@@ -1,0 +1,746 @@
+<!-- Repository: https://github.com/diegorodriguezeti-ui/repuestos.git -->
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ROD INVEST PARTS | Repuestos de Maquinaria Pesada Caterpillar y Autopartes</title>
+    <meta name="description"
+        content="ROD INVEST PARTS - Catálogo oficial de venta de repuestos para maquinaria pesada Caterpillar y autopartes masivas en Venezuela. Envíos a todo el país y atención inmediata por WhatsApp.">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'ml-yellow': '#FFE600',
+                        'ml-yellow-bright': '#FFF159',
+                        'ml-yellow-hover': '#E6CF00',
+                        'tech-blue': '#0052CC',
+                        'tech-blue-dark': '#0A2540',
+                        'tech-blue-deep': '#06182E',
+                        'tech-blue-light': '#2563EB',
+                        'tech-blue-accent': '#38BDF8',
+                        'industrial-dark': '#090D16',
+                        'industrial-card': '#111827',
+                        'wa-green': '#25D366',
+                        'wa-dark': '#1EA952'
+                    },
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+                        heading: ['"Outfit"', 'sans-serif']
+                    },
+                    boxShadow: {
+                        'ml-glow': '0 0 25px -5px rgba(255, 230, 0, 0.3)',
+                        'blue-glow': '0 0 30px -5px rgba(0, 82, 204, 0.4)',
+                        'card-hover': '0 20px 25px -5px rgba(0, 0, 0, 0.5), 0 10px 10px -5px rgba(0, 0, 0, 0.3)'
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        body {
+            background-color: #090D16;
+            color: #F3F4F6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .line-clamp-2 {
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #090D16;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #0052CC;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #2563EB;
+        }
+
+        /* Glassmorphism Header */
+        .glass-header {
+            background: rgba(10, 37, 64, 0.92);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .glass-card {
+            background: rgba(17, 24, 39, 0.85);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .glass-card:hover {
+            border-color: rgba(0, 82, 204, 0.5);
+        }
+
+        /* Deep contrast text shadow for crisp title readability */
+        .hero-text-shadow {
+            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.95), 0 2px 8px rgba(0, 0, 0, 0.9);
+        }
+
+        .brand-glow-shadow {
+            text-shadow: 0 0 25px rgba(255, 230, 0, 0.6), 0 4px 15px rgba(0, 0, 0, 0.9);
+        }
+
+        /* Skeleton Shimmer */
+        @keyframes skeleton-shimmer {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
+        }
+
+        .skeleton-shimmer {
+            background: linear-gradient(90deg, #1f2937 25%, #374151 37%, #1f2937 63%);
+            background-size: 200% 100%;
+            animation: skeleton-shimmer 1.5s infinite;
+        }
+    </style>
+</head>
+
+<body class="min-h-screen flex flex-col font-sans selection:bg-ml-yellow selection:text-black">
+
+    <!-- Top Announcement Bar -->
+    <div class="bg-tech-blue-deep border-b border-blue-900/50 py-2 px-4 text-xs font-semibold text-slate-300">
+        <div class="max-w-7xl mx-auto flex flex-wrap justify-between items-center gap-2">
+            <div class="flex items-center gap-2">
+                <span class="inline-flex items-center gap-1.5 bg-tech-blue text-white text-[11px] font-extrabold px-2.5 py-0.5 rounded shadow">
+                    <i data-lucide="shield-check" class="w-3.5 h-3.5 text-ml-yellow"></i> ROD INVEST PARTS
+                </span>
+                <span class="hidden sm:inline text-slate-400">| Repuestos Originales & Máxima Garantía</span>
+            </div>
+            <div class="flex items-center gap-4 text-slate-300 text-[12px]">
+                <span class="flex items-center gap-1.5"><i data-lucide="star" class="w-3.5 h-3.5 text-ml-yellow fill-ml-yellow"></i> ⭐ Vendedor Destacado en Mercado Libre</span>
+                <span class="hidden md:flex items-center gap-1.5"><i data-lucide="truck" class="w-3.5 h-3.5 text-tech-blue-accent"></i> Envíos Masivos Nacionales</span>
+                <a href="https://wa.me/584146754699" target="_blank" class="flex items-center gap-1.5 text-wa-green font-bold hover:underline">
+                    <i data-lucide="phone" class="w-3.5 h-3.5"></i> +58 414-6754699
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Navigation Header -->
+    <header class="sticky top-0 z-50 glass-header shadow-2xl transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20 gap-4">
+                
+                <!-- Brand Logo -->
+                <a href="#" onclick="resetSearch(event)" class="flex items-center gap-3 group">
+                    <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-tech-blue via-blue-600 to-tech-blue-dark flex items-center justify-center shadow-lg group-hover:scale-105 transition-transform border border-blue-400/30">
+                        <i data-lucide="cog" class="w-7 h-7 text-ml-yellow"></i>
+                    </div>
+                    <div class="flex flex-col">
+                        <span class="font-heading font-black text-2xl tracking-tight text-white group-hover:text-ml-yellow transition-colors">
+                            ROD INVEST <span class="text-ml-yellow">PARTS</span>
+                        </span>
+                        <span class="text-[11px] font-bold text-slate-400 tracking-wider uppercase">
+                            Caterpillar & Autopartes
+                        </span>
+                    </div>
+                </a>
+
+                <!-- Quick Header Search (desktop) -->
+                <div class="hidden lg:flex flex-1 max-w-xl mx-8">
+                    <div class="relative w-full">
+                        <input type="text" id="headerSearchInput" 
+                            placeholder="Busca tu repuesto, marca o código..."
+                            class="w-full bg-slate-900/90 text-white pl-11 pr-24 py-2.5 rounded-xl border border-slate-700/80 focus:border-ml-yellow focus:ring-2 focus:ring-ml-yellow/30 text-sm outline-none transition-all placeholder:text-slate-500">
+                        <i data-lucide="search" class="w-4 h-4 text-slate-400 absolute left-4 top-3.5"></i>
+                        <button onclick="handleHeaderSearch()" 
+                            class="absolute right-1.5 top-1.5 bottom-1.5 bg-ml-yellow hover:bg-ml-yellow-bright text-black font-bold px-4 rounded-lg text-xs transition-colors flex items-center gap-1">
+                            Buscar
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Header Actions -->
+                <div class="flex items-center gap-3 sm:gap-4">
+                    <a href="#catalogo" class="hidden sm:flex items-center gap-2 bg-tech-blue/20 hover:bg-tech-blue/40 border border-tech-blue/50 text-white font-semibold px-4 py-2 rounded-xl text-sm transition-all">
+                        <i data-lucide="grid" class="w-4 h-4 text-ml-yellow"></i>
+                        Catálogo Completo
+                    </a>
+
+                    <a href="https://wa.me/584146754699" target="_blank" 
+                        class="bg-gradient-to-r from-wa-green to-emerald-600 hover:from-emerald-500 hover:to-wa-green text-white font-bold px-4 py-2.5 rounded-xl text-sm shadow-lg hover:shadow-emerald-900/40 transition-all flex items-center gap-2">
+                        <i data-lucide="message-square" class="w-4 h-4"></i>
+                        <span class="hidden sm:inline">WhatsApp Ventas</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-grow">
+        <!-- HERO SECTION INDUSTRIAL CON NUEVA PORTADA CATERPILLAR Y MÁXIMO CONTRASTE -->
+        <section class="relative min-h-[540px] lg:min-h-[600px] flex items-center justify-center overflow-hidden py-16 px-4">
+            
+            <!-- Caterpillar Truck HD Background Image -->
+            <div class="absolute inset-0 z-0">
+                <img src="https://images.unsplash.com/photo-1622645636770-11fbf0611463?q=80&w=1473&auto=format&fit=crop" 
+                    alt="Camión de Maquinaria Pesada Caterpillar ROD INVEST PARTS" 
+                    class="w-full h-full object-cover object-center scale-100 transform">
+                
+                <!-- CAPA DE SUPERPOSICIÓN DE FILTRO PUNTUAL NÍTIDO -->
+                <!-- bg-slate-900/40 + backdrop-blur-[1px] para visualizar el camión Caterpillar con iluminación nítida y contraste perfecto -->
+                <div class="absolute inset-0 bg-slate-900/40 backdrop-blur-[1px]"></div>
+                <div class="absolute inset-0 bg-gradient-to-t from-industrial-dark via-slate-950/50 to-transparent"></div>
+            </div>
+
+            <!-- Hero Content -->
+            <div class="relative z-10 max-w-5xl mx-auto text-center">
+                
+                <!-- Company Trust Badge -->
+                <div class="inline-flex items-center gap-2 bg-slate-900/95 border border-ml-yellow/70 rounded-full px-4 py-1.5 mb-6 backdrop-blur-md shadow-2xl drop-shadow-lg">
+                    <span class="w-2.5 h-2.5 rounded-full bg-ml-yellow animate-pulse"></span>
+                    <span class="text-xs sm:text-sm font-extrabold text-ml-yellow tracking-wide uppercase">
+                        ROD INVEST PARTS • Especialistas en Maquinaria Caterpillar & Autopartes
+                    </span>
+                </div>
+
+                <!-- Industrial Headline con Sombras de Máximo Resalte -->
+                <h1 class="font-heading text-3xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight leading-none mb-6 hero-text-shadow drop-shadow-[0_6px_6px_rgba(0,0,0,0.95)]">
+                    CATÁLOGO OFICIAL DE <br class="hidden sm:inline"/>
+                    <span class="text-ml-yellow brand-glow-shadow font-black drop-shadow-[0_4px_10px_rgba(0,0,0,1)]">
+                        ROD INVEST PARTS
+                    </span>
+                </h1>
+
+                <p class="text-white text-base sm:text-xl max-w-3xl mx-auto font-extrabold mb-8 leading-relaxed hero-text-shadow drop-shadow-[0_3px_6px_rgba(0,0,0,0.95)]">
+                    Venta masiva de repuestos mecánicos, hidráulicos y eléctricos para maquinaria pesada Caterpillar y vehículos. 
+                    Consulta disponibilidad en vivo y despacha a cualquier estado de Venezuela.
+                </p>
+
+                <!-- BUSCADOR PRINCIPAL -->
+                <div class="max-w-3xl mx-auto mb-8">
+                    <form onsubmit="handleMainSearch(event)" class="relative group">
+                        <div class="flex items-center bg-slate-900/95 border-2 border-slate-700 group-hover:border-ml-yellow group-focus-within:border-ml-yellow rounded-2xl shadow-2xl p-1.5 transition-all backdrop-blur-md">
+                            
+                            <!-- Search Icon -->
+                            <div class="pl-4 pr-2 text-slate-400">
+                                <i data-lucide="search" class="w-6 h-6 group-focus-within:text-ml-yellow transition-colors"></i>
+                            </div>
+
+                            <!-- Main Input -->
+                            <input type="text" id="searchInput" 
+                                placeholder="Busca tu repuesto, marca o código..."
+                                autocomplete="off"
+                                class="w-full bg-transparent text-white placeholder-slate-400 text-base sm:text-lg font-medium px-2 py-3 focus:outline-none">
+
+                            <!-- Clear Button -->
+                            <button type="button" id="clearSearchBtn" onclick="clearSearchInput()" 
+                                class="hidden p-2 text-slate-400 hover:text-white transition-colors mr-1">
+                                <i data-lucide="x" class="w-5 h-5"></i>
+                            </button>
+
+                            <!-- Submit Button -->
+                            <button type="submit" 
+                                class="bg-ml-yellow hover:bg-ml-yellow-bright text-black font-extrabold px-6 sm:px-8 py-3 sm:py-4 rounded-xl text-base sm:text-lg transition-all shadow-lg hover:shadow-ml-glow flex items-center gap-2 whitespace-nowrap">
+                                <span>Buscar</span>
+                                <i data-lucide="arrow-right" class="w-5 h-5"></i>
+                            </button>
+                        </div>
+                    </form>
+
+                    <!-- Filter Chips / Popular Queries -->
+                    <div class="flex flex-wrap items-center justify-center gap-2 mt-4 text-xs font-semibold text-slate-300">
+                        <span class="text-white font-bold uppercase tracking-wider hero-text-shadow">Populares:</span>
+                        <button onclick="quickSearch('Caterpillar')" class="bg-slate-900/90 hover:bg-tech-blue hover:text-white border border-slate-700 text-slate-200 px-3 py-1 rounded-lg transition-all backdrop-blur-md">Caterpillar</button>
+                        <button onclick="quickSearch('Filtro')" class="bg-slate-900/90 hover:bg-tech-blue hover:text-white border border-slate-700 text-slate-200 px-3 py-1 rounded-lg transition-all backdrop-blur-md">Filtros</button>
+                        <button onclick="quickSearch('Bomba')" class="bg-slate-900/90 hover:bg-tech-blue hover:text-white border border-slate-700 text-slate-200 px-3 py-1 rounded-lg transition-all backdrop-blur-md">Bombas</button>
+                        <button onclick="quickSearch('Sensor')" class="bg-slate-900/90 hover:bg-tech-blue hover:text-white border border-slate-700 text-slate-200 px-3 py-1 rounded-lg transition-all backdrop-blur-md">Sensores</button>
+                        <button onclick="quickSearch('Empacadura')" class="bg-slate-900/90 hover:bg-tech-blue hover:text-white border border-slate-700 text-slate-200 px-3 py-1 rounded-lg transition-all backdrop-blur-md">Empacaduras</button>
+                        <button onclick="quickSearch('')" class="bg-ml-yellow text-black font-extrabold hover:bg-ml-yellow-bright px-3 py-1 rounded-lg transition-all shadow">Ver Todos</button>
+                    </div>
+                </div>
+
+                <!-- Trust Metrics / Beneficios de Confianza -->
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-4xl mx-auto pt-6 border-t border-slate-700/70 text-left">
+                    <div class="flex items-center gap-3 bg-slate-900/90 p-3 rounded-xl border border-slate-700 backdrop-blur-md shadow-lg">
+                        <div class="p-2 bg-tech-blue/20 text-tech-blue-accent rounded-lg">
+                            <i data-lucide="package-check" class="w-5 h-5"></i>
+                        </div>
+                        <div>
+                            <p class="font-bold text-white text-sm">+2,000 Repuestos</p>
+                            <p class="text-xs text-slate-400">Stock Inmediato</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center gap-3 bg-slate-900/90 p-3 rounded-xl border border-slate-700 backdrop-blur-md shadow-lg">
+                        <div class="p-2 bg-ml-yellow/20 text-ml-yellow rounded-lg">
+                            <i data-lucide="star" class="w-5 h-5 fill-ml-yellow"></i>
+                        </div>
+                        <div>
+                            <p class="font-bold text-white text-sm">Vendedor Destacado</p>
+                            <p class="text-xs text-slate-400">en Mercado Libre</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center gap-3 bg-slate-900/90 p-3 rounded-xl border border-slate-700 backdrop-blur-md shadow-lg">
+                        <div class="p-2 bg-wa-green/20 text-wa-green rounded-lg">
+                            <i data-lucide="zap" class="w-5 h-5"></i>
+                        </div>
+                        <div>
+                            <p class="font-bold text-white text-sm">Despacho Inmediato</p>
+                            <p class="text-xs text-slate-400">Envíos Nacionales</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center gap-3 bg-slate-900/90 p-3 rounded-xl border border-slate-700 backdrop-blur-md shadow-lg">
+                        <div class="p-2 bg-blue-500/20 text-blue-400 rounded-lg">
+                            <i data-lucide="shield-check" class="w-5 h-5"></i>
+                        </div>
+                        <div>
+                            <p class="font-bold text-white text-sm">Compra Segura</p>
+                            <p class="text-xs text-slate-400">ROD INVEST PARTS</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- CATALOG SECTION -->
+        <section id="catalogo" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            
+            <!-- Section Header & Controls -->
+            <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8 pb-6 border-b border-slate-800">
+                <div>
+                    <h2 class="font-heading text-2xl sm:text-3xl font-extrabold text-white flex items-center gap-3">
+                        <span class="w-2 h-8 bg-ml-yellow rounded-full inline-block"></span>
+                        Inventario de Repuestos
+                    </h2>
+                    <p id="searchSummaryText" class="text-slate-400 text-sm mt-1">
+                        Cargando productos de ROD INVEST PARTS...
+                    </p>
+                </div>
+
+                <div class="flex items-center gap-3">
+                    <span class="text-xs text-slate-400 font-semibold uppercase">Ordenar:</span>
+                    <select id="sortSelect" onchange="sortProducts()" 
+                        class="bg-slate-900 text-white text-sm font-medium border border-slate-700 rounded-xl px-3 py-2 focus:border-ml-yellow focus:outline-none">
+                        <option value="default">Relevancia</option>
+                        <option value="price-asc">Menor Precio</option>
+                        <option value="price-desc">Mayor Precio</option>
+                        <option value="title-asc">Nombre A-Z</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- PRODUCT GRID CONTAINER -->
+            <div id="productsGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                <!-- JavaScript renders Cards / Skeleton Loader / Error / Empty States here -->
+            </div>
+
+            <!-- Pagination / Refresh Bar -->
+            <div id="paginationContainer" class="hidden mt-12 text-center">
+                <button onclick="fetchProducts(currentSearchQuery)" 
+                    class="inline-flex items-center gap-2 bg-slate-900 hover:bg-slate-800 text-slate-300 font-bold px-6 py-3 rounded-xl border border-slate-700 transition-all text-sm">
+                    <i data-lucide="refresh-cw" class="w-4 h-4 text-ml-yellow"></i>
+                    Actualizar Catálogo
+                </button>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER INDUSTRIAL ROD INVEST PARTS -->
+    <footer class="bg-slate-950 border-t border-slate-800 text-slate-400 py-12 px-4">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+            
+            <div class="space-y-4">
+                <div class="flex items-center gap-2">
+                    <div class="w-8 h-8 rounded-lg bg-tech-blue flex items-center justify-center">
+                        <i data-lucide="cog" class="w-5 h-5 text-ml-yellow"></i>
+                    </div>
+                    <span class="font-heading font-extrabold text-xl text-white">ROD INVEST <span class="text-ml-yellow">PARTS</span></span>
+                </div>
+                <p class="text-xs leading-relaxed text-slate-400">
+                    Empresa líder en suministro e importación masiva de repuestos para maquinaria pesada Caterpillar y autopartes en Venezuela.
+                </p>
+                <div class="flex items-center gap-1.5 text-xs font-bold text-ml-yellow">
+                    <i data-lucide="star" class="w-4 h-4 fill-ml-yellow"></i> ⭐ Vendedor Destacado en Mercado Libre (ID: 1216174253)
+                </div>
+            </div>
+
+            <div>
+                <h4 class="font-bold text-white text-sm mb-4 uppercase tracking-wider">Formas de Pago</h4>
+                <ul class="space-y-2 text-xs">
+                    <li class="flex items-center gap-2"><i data-lucide="dollar-sign" class="w-4 h-4 text-green-400"></i> Dólares Zelle / Efectivo</li>
+                    <li class="flex items-center gap-2"><i data-lucide="credit-card" class="w-4 h-4 text-blue-400"></i> Transferencia Nacional / Pago Móvil</li>
+                    <li class="flex items-center gap-2"><i data-lucide="shield-check" class="w-4 h-4 text-ml-yellow"></i> Depósitos & Cuentas Custodia</li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="font-bold text-white text-sm mb-4 uppercase tracking-wider">Envíos y Despacho</h4>
+                <ul class="space-y-2 text-xs">
+                    <li class="flex items-center gap-2"><i data-lucide="truck" class="w-4 h-4 text-ml-yellow"></i> Zoom, MRW, Tealca, Domesa</li>
+                    <li class="flex items-center gap-2"><i data-lucide="map-pin" class="w-4 h-4 text-red-400"></i> Despachos a toda Venezuela</li>
+                    <li class="flex items-center gap-2"><i data-lucide="clock" class="w-4 h-4 text-green-400"></i> Atención Rápida en 24h</li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="font-bold text-white text-sm mb-4 uppercase tracking-wider">Contacto Directo</h4>
+                <p class="text-xs mb-3 text-slate-400">¿Necesitas asesoría o cotización especial?</p>
+                <a href="https://wa.me/584146754699" target="_blank" 
+                    class="inline-flex items-center gap-2 bg-wa-green hover:bg-wa-dark text-white font-bold px-4 py-2.5 rounded-xl text-xs transition-all w-full justify-center shadow-lg">
+                    <i data-lucide="message-square" class="w-4 h-4"></i> Contactar al +58 414-6754699
+                </a>
+            </div>
+
+        </div>
+
+        <div class="max-w-7xl mx-auto pt-6 border-t border-slate-900 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-4">
+            <p>© 2026 ROD INVEST PARTS - Todos los derechos reservados.</p>
+            <p>GitHub Repo: <a href="https://github.com/diegorodriguezeti-ui/repuestos.git" target="_blank" class="text-slate-400 hover:text-ml-yellow bg-slate-900 px-2 py-0.5 rounded underline">diegorodriguezeti-ui/repuestos</a></p>
+        </div>
+    </footer>
+
+    <!-- Floating WhatsApp Button -->
+    <a href="https://wa.me/584146754699" target="_blank" title="Contactar a ROD INVEST PARTS"
+        class="fixed bottom-6 right-6 z-50 bg-wa-green hover:bg-wa-dark text-white p-4 rounded-full shadow-2xl hover:scale-110 transition-all flex items-center justify-center group border-2 border-white/20">
+        <i data-lucide="message-square" class="w-7 h-7"></i>
+        <span class="max-w-0 overflow-hidden group-hover:max-w-xs transition-all duration-300 ease-in-out whitespace-nowrap text-xs font-bold pl-0 group-hover:pl-2">
+            Chatea con ROD INVEST PARTS
+        </span>
+    </a>
+
+    <!-- JAVASCRIPT LOGIC - ROD INVEST PARTS -->
+    <script>
+        const SELLER_ID = '1216174253'; // Seller ID real de Mercado Libre
+        const WHATSAPP_PHONE = '584146754699'; // Número oficial ROD INVEST PARTS
+
+        // State Store
+        let rawProducts = [];
+        let displayedProducts = [];
+        let currentSearchQuery = '';
+        let isLoading = false;
+
+        // Fetch endpoint relativo al backend seguro
+        const API_ENDPOINT = '/api/repuestos';
+
+        document.addEventListener('DOMContentLoaded', () => {
+            lucide.createIcons();
+            
+            // Input sync
+            const searchInput = document.getElementById('searchInput');
+            searchInput.addEventListener('input', (e) => {
+                const clearBtn = document.getElementById('clearSearchBtn');
+                if (e.target.value) {
+                    clearBtn.classList.remove('hidden');
+                } else {
+                    clearBtn.classList.add('hidden');
+                }
+            });
+
+            // Initial catalog fetch
+            fetchProducts();
+        });
+
+        function clearSearchInput() {
+            const input = document.getElementById('searchInput');
+            input.value = '';
+            document.getElementById('clearSearchBtn').classList.add('hidden');
+            input.focus();
+            fetchProducts('');
+        }
+
+        function resetSearch(e) {
+            e.preventDefault();
+            const input = document.getElementById('searchInput');
+            input.value = '';
+            document.getElementById('clearSearchBtn').classList.add('hidden');
+            fetchProducts('');
+        }
+
+        function quickSearch(query) {
+            const input = document.getElementById('searchInput');
+            input.value = query;
+            if (query) {
+                document.getElementById('clearSearchBtn').classList.remove('hidden');
+            } else {
+                document.getElementById('clearSearchBtn').classList.add('hidden');
+            }
+            fetchProducts(query);
+        }
+
+        function handleMainSearch(e) {
+            e.preventDefault();
+            const query = document.getElementById('searchInput').value.trim();
+            fetchProducts(query);
+        }
+
+        function handleHeaderSearch() {
+            const query = document.getElementById('headerSearchInput').value.trim();
+            if (query) {
+                document.getElementById('searchInput').value = query;
+                document.getElementById('clearSearchBtn').classList.remove('hidden');
+                fetchProducts(query);
+                document.getElementById('catalogo').scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        async function fetchProducts(query = '') {
+            currentSearchQuery = query;
+            setLoadingState(true);
+            updateSummaryText(query, true);
+
+            // Fetch asíncrono relativo al backend seguro
+            const url = query ? `${API_ENDPOINT}?q=${encodeURIComponent(query)}` : API_ENDPOINT;
+
+            try {
+                let response = await fetch(url);
+
+                // Fallback directo a Mercado Libre API si el backend relativo no responde en entorno estático local
+                if (!response.ok && response.status === 404) {
+                    console.warn("Backend local '/api/repuestos' no detectado. Ejecutando fallback directo a Seller ID " + SELLER_ID);
+                    const fallbackUrl = query 
+                        ? `https://api.mercadolibre.com/sites/MLV/search?seller_id=${SELLER_ID}&limit=50&q=${encodeURIComponent(query)}` 
+                        : `https://api.mercadolibre.com/sites/MLV/search?seller_id=${SELLER_ID}&limit=50`;
+                    response = await fetch(fallbackUrl);
+                }
+
+                if (!response.ok) {
+                    throw new Error(`Error en la consulta (Status ${response.status})`);
+                }
+
+                const data = await response.json();
+                
+                rawProducts = data.results || [];
+                displayedProducts = [...rawProducts];
+
+                setLoadingState(false);
+                renderProducts(displayedProducts);
+                updateSummaryText(query, false, displayedProducts.length);
+
+            } catch (error) {
+                console.error("Error al obtener inventario de repuestos:", error);
+
+                // Intentar fallback secundario en caso de error
+                try {
+                    const directUrl = query 
+                        ? `https://api.mercadolibre.com/sites/MLV/search?seller_id=${SELLER_ID}&limit=50&q=${encodeURIComponent(query)}` 
+                        : `https://api.mercadolibre.com/sites/MLV/search?seller_id=${SELLER_ID}&limit=50`;
+                    const fallbackRes = await fetch(directUrl);
+                    if (fallbackRes.ok) {
+                        const fallbackData = await fallbackRes.json();
+                        rawProducts = fallbackData.results || [];
+                        displayedProducts = [...rawProducts];
+                        setLoadingState(false);
+                        renderProducts(displayedProducts);
+                        updateSummaryText(query, false, displayedProducts.length);
+                        return;
+                    }
+                } catch (err) {
+                    console.error("Fallback directo secundario también falló:", err);
+                }
+
+                setLoadingState(false);
+                renderErrorState(error.message);
+            }
+        }
+
+        function setLoadingState(loading) {
+            isLoading = loading;
+            const grid = document.getElementById('productsGrid');
+            
+            if (loading) {
+                grid.innerHTML = Array(8).fill(0).map(() => `
+                    <div class="glass-card rounded-2xl overflow-hidden p-4 space-y-4">
+                        <div class="w-full h-48 rounded-xl skeleton-shimmer"></div>
+                        <div class="h-4 w-1/3 rounded skeleton-shimmer"></div>
+                        <div class="h-6 w-3/4 rounded skeleton-shimmer"></div>
+                        <div class="h-8 w-1/2 rounded skeleton-shimmer"></div>
+                        <div class="h-10 w-full rounded-xl skeleton-shimmer"></div>
+                    </div>
+                `).join('');
+            }
+        }
+
+        function updateSummaryText(query, loading, count = 0) {
+            const summary = document.getElementById('searchSummaryText');
+            if (loading) {
+                summary.innerHTML = `<span class="inline-flex items-center gap-1.5"><i data-lucide="loader-2" class="w-4 h-4 animate-spin text-ml-yellow"></i> Consultando disponibilidad de repuestos en el servidor...</span>`;
+            } else if (query) {
+                summary.innerHTML = `Mostrando <strong class="text-white">${count}</strong> repuestos encontrados para <strong class="text-ml-yellow">"${escapeHtml(query)}"</strong>`;
+            } else {
+                summary.innerHTML = `Mostrando <strong class="text-white">${count}</strong> repuestos en catálogo de <strong>ROD INVEST PARTS</strong>`;
+            }
+            lucide.createIcons();
+        }
+
+        function renderProducts(products) {
+            const grid = document.getElementById('productsGrid');
+
+            if (!products || products.length === 0) {
+                renderEmptyState();
+                return;
+            }
+
+            grid.innerHTML = products.map(item => {
+                const formattedPrice = Number(item.price).toLocaleString('en-US', {
+                    minimumFractionDigits: 2,
+                    maximumFractionDigits: 2
+                });
+
+                // High resolution image URL tuning
+                let imageUrl = item.thumbnail || 'https://via.placeholder.com/400x300?text=Repuesto';
+                if (imageUrl.startsWith('http://')) {
+                    imageUrl = imageUrl.replace('http://', 'https://');
+                }
+                if (imageUrl.includes('-I.jpg')) {
+                    imageUrl = imageUrl.replace('-I.jpg', '-O.jpg');
+                }
+
+                // Mensaje dinámico formal para WhatsApp
+                const rawWhatsappMessage = `Hola ROD INVEST PARTS! Me interesa el repuesto ${item.title} con el precio de US$ ${formattedPrice} que vi en la web. ¿Tienen disponibilidad?`;
+                const whatsappUrl = `https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent(rawWhatsappMessage)}`;
+
+                return `
+                    <div class="glass-card rounded-2xl overflow-hidden flex flex-col justify-between hover:shadow-card-hover transition-all duration-300 group border border-slate-800">
+                        
+                        <div>
+                            <!-- Card Image -->
+                            <div class="relative w-full h-52 bg-slate-900 overflow-hidden flex items-center justify-center p-3 border-b border-slate-800/80">
+                                <img src="${imageUrl}" 
+                                    alt="${escapeHtml(item.title)}" 
+                                    loading="lazy"
+                                    onerror="this.onerror=null; this.src='https://via.placeholder.com/400x300?text=Repuesto+Caterpillar';"
+                                    class="max-h-full max-w-full object-contain group-hover:scale-105 transition-transform duration-300">
+                                
+                                <span class="absolute top-3 left-3 bg-slate-950/90 text-ml-yellow text-[10px] font-extrabold px-2.5 py-1 rounded-full border border-ml-yellow/30 uppercase tracking-wider flex items-center gap-1 shadow">
+                                    <i data-lucide="check-circle" class="w-3 h-3 text-ml-yellow"></i> Stock Disponible
+                                </span>
+                            </div>
+
+                            <!-- Card Body -->
+                            <div class="p-5">
+                                <div class="flex items-center gap-2 mb-2 text-[11px] font-bold text-tech-blue-accent uppercase tracking-wider">
+                                    <i data-lucide="tag" class="w-3 h-3"></i> Autoparte / Maquinaria
+                                </div>
+
+                                <h3 class="font-bold text-white text-base leading-snug line-clamp-2 mb-3 group-hover:text-ml-yellow transition-colors" title="${escapeHtml(item.title)}">
+                                    ${escapeHtml(item.title)}
+                                </h3>
+
+                                <div class="flex items-baseline gap-2 mb-4">
+                                    <span class="text-xs font-semibold text-slate-400">Precio:</span>
+                                    <span class="font-heading font-black text-2xl text-ml-yellow tracking-tight">
+                                        US$ ${formattedPrice}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Card Actions -->
+                        <div class="p-5 pt-0 space-y-2">
+                            <!-- WhatsApp Purchase Button -->
+                            <a href="${whatsappUrl}" target="_blank" 
+                                class="w-full bg-wa-green hover:bg-wa-dark text-white font-bold py-3 px-4 rounded-xl flex items-center justify-center gap-2 shadow-lg hover:shadow-emerald-900/30 transition-all text-sm">
+                                <i data-lucide="message-square" class="w-4 h-4"></i>
+                                <span>Comprar por WhatsApp</span>
+                            </a>
+                        </div>
+
+                    </div>
+                `;
+            }).join('');
+
+            lucide.createIcons();
+        }
+
+        function renderEmptyState() {
+            const grid = document.getElementById('productsGrid');
+            grid.innerHTML = `
+                <div class="col-span-full py-16 text-center glass-card rounded-2xl p-8 max-w-lg mx-auto">
+                    <div class="w-16 h-16 bg-slate-800 text-ml-yellow rounded-2xl flex items-center justify-center mx-auto mb-4 border border-slate-700">
+                        <i data-lucide="search-x" class="w-8 h-8"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-2">Sin resultados de búsqueda</h3>
+                    <p class="text-slate-400 text-sm mb-6">
+                        No encontramos repuestos que coincidan con "${escapeHtml(currentSearchQuery)}". Intenta con otro término o código.
+                    </p>
+                    <button onclick="clearSearchInput()" 
+                        class="bg-ml-yellow hover:bg-ml-yellow-bright text-black font-bold px-6 py-2.5 rounded-xl text-sm transition-all shadow-lg">
+                        Ver todo el inventario
+                    </button>
+                </div>
+            `;
+            lucide.createIcons();
+        }
+
+        function renderErrorState(errorMessage) {
+            const grid = document.getElementById('productsGrid');
+            grid.innerHTML = `
+                <div class="col-span-full py-16 text-center glass-card rounded-2xl p-8 max-w-lg mx-auto border-red-500/30">
+                    <div class="w-16 h-16 bg-red-500/10 text-red-400 rounded-2xl flex items-center justify-center mx-auto mb-4 border border-red-500/30">
+                        <i data-lucide="alert-triangle" class="w-8 h-8"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-2">Error al conectar con la base de datos</h3>
+                    <p class="text-slate-400 text-sm mb-6">
+                        ${escapeHtml(errorMessage || 'No se pudo consultar el catálogo en este momento.')}
+                    </p>
+                    <button onclick="fetchProducts(currentSearchQuery)" 
+                        class="bg-tech-blue hover:bg-blue-600 text-white font-bold px-6 py-2.5 rounded-xl text-sm transition-all shadow-lg flex items-center gap-2 mx-auto">
+                        <i data-lucide="rotate-cw" class="w-4 h-4"></i>
+                        Reintentar consulta
+                    </button>
+                </div>
+            `;
+            lucide.createIcons();
+        }
+
+        function sortProducts() {
+            const sortVal = document.getElementById('sortSelect').value;
+            if (sortVal === 'price-asc') {
+                displayedProducts.sort((a, b) => a.price - b.price);
+            } else if (sortVal === 'price-desc') {
+                displayedProducts.sort((a, b) => b.price - a.price);
+            } else if (sortVal === 'title-asc') {
+                displayedProducts.sort((a, b) => a.title.localeCompare(b.title));
+            } else {
+                displayedProducts = [...rawProducts];
+            }
+            renderProducts(displayedProducts);
+        }
+
+        function escapeHtml(str) {
+            if (!str) return '';
+            return str
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;")
+                .replace(/'/g, "&#039;");
+        }
+    </script>
+</body>
+
+</html>
