@@ -499,17 +499,20 @@
         </span>
     </a>
 
-    <!-- HIGH-PERFORMANCE IN-MEMORY LOGIC WITH CHUNK RENDERING -->
+    <!-- HIGH-PERFORMANCE IN-MEMORY FUZZY SEARCH LOGIC -->
     <script>
         const WHATSAPP_PHONE = '584146754699';
         const GOOGLE_SHEETS_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRvzJVdhXxaMoT7qP_ZWKOHLUhQ_cVqBGtINkrKfKJmjbawjDqB02A36DcyD6QDUXAMq2OVCqvnzs0k/pub?output=csv';
         const BACKEND_PROXY_URL = '/api/repuestos';
 
-        // Performance Configuration
-        const CHUNK_SIZE = 24; // Number of items rendered per chunk for maximum keystroke fluidity
+        // Stop words to ignore during multi-word tokenized search
+        const STOP_WORDS = new Set(['de', 'del', 'para', 'con', 'y', 'el', 'la', 'los', 'las', 'en', 'un', 'una', 'por', 'a', 'o']);
+
+        // Chunk Pagination Config
+        const CHUNK_SIZE = 24;
         let currentChunkCount = 1;
 
-        // In-Memory Data Store
+        // In-Memory Data Store (Downloaded ONCE on load)
         let allProducts = [];
         let filteredProducts = [];
         let isLoading = false;
@@ -517,7 +520,7 @@
         document.addEventListener('DOMContentLoaded', () => {
             lucide.createIcons();
             
-            // Instant real-time search filtering on input
+            // In-Memory real-time search listener (NO network calls)
             const searchInput = document.getElementById('searchInput');
             searchInput.addEventListener('input', (e) => {
                 const query = e.target.value;
@@ -530,7 +533,7 @@
                 filterProducts(query);
             });
 
-            // Close modal keyboard shortcut
+            // Modal keyboard shortcut
             document.addEventListener('keydown', (e) => {
                 if (e.key === 'Escape') closeProductModal();
             });
@@ -540,9 +543,17 @@
                 if (e.target.id === 'productModal') closeProductModal();
             });
 
-            // Silent single fetch on page load
+            // Download CSV ONCE silently upon entering the page
             loadCsvDataSilently();
         });
+
+        function normalizeText(str) {
+            if (!str) return '';
+            return String(str)
+                .toLowerCase()
+                .normalize("NFD")
+                .replace(/[\u0300-\u036f]/g, ""); // Remove tildes and accents
+        }
 
         function clearSearchInput() {
             const input = document.getElementById('searchInput');
@@ -553,7 +564,7 @@
         }
 
         function resetSearch(e) {
-            e.preventDefault();
+            if (e) e.preventDefault();
             const input = document.getElementById('searchInput');
             input.value = '';
             document.getElementById('clearSearchBtn').classList.add('hidden');
@@ -572,13 +583,13 @@
         }
 
         function handleMainSearch(e) {
-            e.preventDefault();
-            const query = document.getElementById('searchInput').value.trim();
+            if (e) e.preventDefault();
+            const query = document.getElementById('searchInput').value;
             filterProducts(query);
         }
 
         function handleHeaderSearch() {
-            const query = document.getElementById('headerSearchInput').value.trim();
+            const query = document.getElementById('headerSearchInput').value;
             if (query !== undefined) {
                 document.getElementById('searchInput').value = query;
                 if (query) document.getElementById('clearSearchBtn').classList.remove('hidden');
@@ -645,7 +656,11 @@
                             titulo,
                             stock,
                             precio,
-                            descripcion
+                            descripcion,
+                            // Pre-normalized search strings for ultra-fast matching
+                            normTitle: normalizeText(titulo),
+                            normCode: normalizeText(codigo),
+                            normDesc: normalizeText(descripcion)
                         };
                     }).filter(item => item.titulo && item.titulo !== 'Repuesto sin título');
 
@@ -662,17 +677,33 @@
             });
         }
 
+        /**
+         * 100% IN-MEMORY TOKENIZED / FUZZY FILTERING (NO NETWORK FETCH)
+         */
         function filterProducts(query = '') {
-            const cleanQuery = query.trim().toLowerCase();
+            const normalizedQuery = normalizeText(query.trim());
             currentChunkCount = 1;
 
-            if (!cleanQuery) {
+            if (!normalizedQuery) {
                 filteredProducts = [...allProducts];
             } else {
-                filteredProducts = allProducts.filter(item => {
-                    return item.titulo.toLowerCase().includes(cleanQuery) || 
-                           item.codigo.toLowerCase().includes(cleanQuery);
-                });
+                // Split query into keywords (tokens) and filter out connector stop words
+                const tokens = normalizedQuery
+                    .split(/\s+/)
+                    .filter(word => word.length > 0 && !STOP_WORDS.has(word));
+
+                if (tokens.length === 0) {
+                    filteredProducts = [...allProducts];
+                } else {
+                    // Match item if ALL key tokens exist in title, code, or description
+                    filteredProducts = allProducts.filter(item => {
+                        return tokens.every(token => 
+                            item.normTitle.includes(token) || 
+                            item.normCode.includes(token) || 
+                            item.normDesc.includes(token)
+                        );
+                    });
+                }
             }
 
             renderProductsChunk();
@@ -779,7 +810,7 @@
                 `;
             }).join('');
 
-            // Toggle "Load More" button visibility
+            // Toggle Load More button
             if (filteredProducts.length > visibleCount) {
                 loadMoreContainer.classList.remove('hidden');
             } else {
