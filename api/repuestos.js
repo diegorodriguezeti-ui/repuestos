@@ -1,17 +1,15 @@
 /**
- * Vercel Serverless Function - Proxy Seguro para Mercado Libre API
- * Endpoint: /api/repuestos?q=...&limit=50
- * Vendedor ID: 164580114
+ * Vercel Serverless Function - Proxy para Google Sheets CSV / API Repuestos
+ * Source: Google Sheets publicado en CSV
  */
 
-const SELLER_ID = '1216174253';
-const ML_API_BASE = `https://api.mercadolibre.com/sites/MLV/search?seller_id=${SELLER_ID}`;
+const CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRvzJVdhXxaMoT7qP_ZWKOHLUhQ_cVqBGtINkrKfKJmjbawjDqB02A36DcyD6QDUXAMq2OVCqvnzs0k/pub?output=csv';
 
 export default async function handler(req, res) {
   // CORS Headers
   res.setHeader('Access-Control-Allow-Credentials', 'true');
   res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT');
+  res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS');
   res.setHeader(
     'Access-Control-Allow-Headers',
     'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version'
@@ -22,40 +20,25 @@ export default async function handler(req, res) {
   }
 
   try {
-    const query = req.query.q || '';
-    const limit = req.query.limit || '50';
-    const offset = req.query.offset || '0';
-
-    let targetUrl = `${ML_API_BASE}&limit=${limit}&offset=${offset}`;
-    if (query) {
-      targetUrl += `&q=${encodeURIComponent(query)}`;
-    }
-
-    const response = await fetch(targetUrl, {
-      headers: {
-        'Accept': 'application/json',
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
-      }
-    });
-
+    const response = await fetch(CSV_URL);
     if (!response.ok) {
       return res.status(response.status).json({
         error: true,
-        status: response.status,
-        message: `Error consultando Mercado Libre API (${response.status})`
+        message: `Error al obtener hoja de cálculo CSV (Status ${response.status})`
       });
     }
 
-    const data = await response.json();
+    const csvText = await response.text();
     
     // Set cache headers
-    res.setHeader('Cache-Control', 's-maxage=300, stale-while-revalidate=600');
-    return res.status(200).json(data);
+    res.setHeader('Cache-Control', 's-maxage=120, stale-while-revalidate=300');
+    res.setHeader('Content-Type', 'text/csv; charset=utf-8');
+    return res.status(200).send(csvText);
 
   } catch (err) {
     return res.status(500).json({
       error: true,
-      message: err.message || 'Error interno del servidor'
+      message: err.message || 'Error interno en el servidor serverless'
     });
   }
 }
