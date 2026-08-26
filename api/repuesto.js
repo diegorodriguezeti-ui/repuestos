@@ -185,6 +185,7 @@ export default async function handler(req, res) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google-site-verification" content="JU7O8kTbHu2CLKcAgcI3w5paqQbzBazut0mcGd97zkY" />
     <title>${escapeHtml(pageTitle)}</title>
     <meta name="description" content="${escapeHtml(cleanDescription)}">
     <link rel="canonical" href="${escapeHtml(canonicalUrl)}">
