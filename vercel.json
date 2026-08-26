@@ -1,0 +1,13 @@
+{
+  "version": 2,
+  "rewrites": [
+    {
+      "source": "/sitemap.xml",
+      "destination": "/api/sitemap.js"
+    },
+    {
+      "source": "/repuesto/:codigo",
+      "destination": "/api/repuesto.js?codigo=:codigo"
+    }
+  ]
+}

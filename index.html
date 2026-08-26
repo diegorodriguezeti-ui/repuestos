@@ -517,9 +517,22 @@
         let filteredProducts = [];
         let isLoading = false;
 
+        const ORIGINAL_TITLE = 'ROD INVEST PARTS | Repuestos de Maquinaria Pesada Caterpillar y Autopartes';
+
         document.addEventListener('DOMContentLoaded', () => {
             lucide.createIcons();
             
+            // Listen for back/forward navigation
+            window.addEventListener('popstate', (e) => {
+                if (window.location.pathname.startsWith('/repuesto/')) {
+                    const code = decodeURIComponent(window.location.pathname.replace('/repuesto/', ''));
+                    const item = allProducts.find(p => p.codigo.toLowerCase() === code.toLowerCase());
+                    if (item) openProductModal(item.id, true);
+                } else {
+                    closeProductModal(true);
+                }
+            });
+
             // In-Memory real-time search listener (NO network calls)
             const searchInput = document.getElementById('searchInput');
             searchInput.addEventListener('input', (e) => {
@@ -668,6 +681,15 @@
                     currentChunkCount = 1;
                     setLoadingState(false);
                     renderProductsChunk();
+
+                    // Check if initial URL is a product URL (/repuesto/[codigo])
+                    if (window.location.pathname.startsWith('/repuesto/')) {
+                        const initialCode = decodeURIComponent(window.location.pathname.replace('/repuesto/', ''));
+                        const foundItem = allProducts.find(p => p.codigo.toLowerCase() === initialCode.toLowerCase());
+                        if (foundItem) {
+                            openProductModal(foundItem.id, true);
+                        }
+                    }
                 },
                 error: function(err) {
                     console.error("Error en PapaParse:", err);
@@ -820,7 +842,7 @@
             lucide.createIcons();
         }
 
-        function openProductModal(productId) {
+        function openProductModal(productId, skipHistoryState = false) {
             const item = allProducts.find(p => p.id === productId);
             if (!item) return;
 
@@ -844,13 +866,29 @@
             modal.classList.add('flex');
             document.body.style.overflow = 'hidden';
             lucide.createIcons();
+
+            // SEO Dynamic Title & URL state sync
+            document.title = `${item.titulo} ${item.codigo} | ROD INVEST PARTS`;
+            if (!skipHistoryState && window.history && window.history.pushState) {
+                const productUrl = `/repuesto/${encodeURIComponent(item.codigo)}`;
+                if (window.location.pathname !== productUrl) {
+                    window.history.pushState({ modalOpen: true, code: item.codigo }, '', productUrl);
+                }
+            }
         }
 
-        function closeProductModal() {
+        function closeProductModal(skipHistoryState = false) {
             const modal = document.getElementById('productModal');
             modal.classList.add('hidden');
             modal.classList.remove('flex');
             document.body.style.overflow = 'auto';
+
+            document.title = ORIGINAL_TITLE;
+            if (!skipHistoryState && window.history && window.history.pushState) {
+                if (window.location.pathname.startsWith('/repuesto/')) {
+                    window.history.pushState(null, '', '/');
+                }
+            }
         }
 
         function renderEmptyState() {
