@@ -619,21 +619,22 @@
 
         async function loadCsvDataSilently() {
             setLoadingState(true);
+            let mlItems = [];
 
-            // Intentar cargar primero el JSON extraído de Mercado Libre (repuestos_ml.json)
+            // 1. Cargar las imágenes HD del JSON de Mercado Libre (para cruce por título/código)
             try {
                 const mlRes = await fetch('repuestos_ml.json');
                 if (mlRes.ok) {
                     const mlData = await mlRes.json();
-                    if (Array.isArray(mlData) && mlData.length > 0) {
-                        storeMlProducts(mlData);
-                        return;
+                    if (Array.isArray(mlData)) {
+                        mlItems = mlData;
                     }
                 }
             } catch (e) {
-                console.log("No se pudo cargar repuestos_ml.json local, intentando Google Sheets CSV...", e);
+                console.log("No se pudo cargar repuestos_ml.json para imágenes, usando catálogo directo...", e);
             }
 
+            // 2. Cargar la base de datos real (Google Sheets CSV / Proxy) con Códigos reales, Precios y Descripciones
             let csvText = '';
             try {
                 let response = await fetch(GOOGLE_SHEETS_CSV_URL);
@@ -647,7 +648,7 @@
                 }
 
                 csvText = await response.text();
-                parseAndStoreProducts(csvText);
+                parseAndStoreProducts(csvText, mlItems);
 
             } catch (error) {
                 console.error("Error al cargar datos:", error);
@@ -656,7 +657,7 @@
                     const proxyRes = await fetch(BACKEND_PROXY_URL);
                     if (proxyRes.ok) {
                         csvText = await proxyRes.text();
-                        parseAndStoreProducts(csvText);
+                        parseAndStoreProducts(csvText, mlItems);
                         return;
                     }
                 } catch (err) {
@@ -668,47 +669,7 @@
             }
         }
 
-        function storeMlProducts(items) {
-            allProducts = items.map((row, index) => {
-                const id = row.id || index + 1;
-                const codigo = String(row.codigo || `MLV-${index + 1}`).trim();
-                const titulo = String(row.titulo || 'Repuesto sin título').trim();
-                const stock = String(row.stock || 'Disponible').trim();
-                const precio = String(row.precio || 'Consultar').trim();
-                const descripcion = String(row.descripcion || '').trim();
-                const imagen_hd = row.imagen_hd || '';
-                const link_ml = row.link_ml || '';
-
-                return {
-                    id,
-                    codigo,
-                    titulo,
-                    stock,
-                    precio,
-                    descripcion,
-                    imagen_hd,
-                    link_ml,
-                    normTitle: normalizeText(titulo),
-                    normCode: normalizeText(codigo),
-                    normDesc: normalizeText(descripcion)
-                };
-            }).filter(item => item.titulo && item.titulo !== 'Repuesto sin título');
-
-            filteredProducts = [...allProducts];
-            currentChunkCount = 1;
-            setLoadingState(false);
-            renderProductsChunk();
-
-            if (window.location.pathname.startsWith('/repuesto/')) {
-                const initialCode = decodeURIComponent(window.location.pathname.replace('/repuesto/', ''));
-                const foundItem = allProducts.find(p => p.codigo.toLowerCase() === initialCode.toLowerCase());
-                if (foundItem) {
-                    openProductModal(foundItem.id, true);
-                }
-            }
-        }
-
-        function parseAndStoreProducts(csvText) {
+        function parseAndStoreProducts(csvText, mlItems = []) {
             Papa.parse(csvText, {
                 header: true,
                 skipEmptyLines: true,
@@ -723,6 +684,44 @@
                         const precio = String(row['precio'] || row['Precio'] || row['PRECIO'] || '0').trim();
                         const descripcion = String(row['Descripción'] || row['Descripcion'] || row['DESCRIPCION'] || row['descripción'] || 'Sin descripción detallada.').trim();
 
+                        const normTitle = normalizeText(titulo);
+                        const normCode = normalizeText(codigo);
+
+                        // Cruce/Fusión con imágenes HD de Mercado Libre por coincidencia de Código o Título
+                        let matchedImage = '';
+                        let matchedLink = '';
+
+                        if (mlItems && mlItems.length > 0) {
+                            let match = mlItems.find(ml => {
+                                const mlNormTitle = normalizeText(ml.titulo);
+                                const mlNormCode = normalizeText(ml.codigo);
+                                return (normCode.length > 2 && (mlNormTitle.includes(normCode) || mlNormCode.includes(normCode)));
+                            });
+
+                            if (!match) {
+                                match = mlItems.find(ml => {
+                                    const mlNormTitle = normalizeText(ml.titulo);
+                                    return mlNormTitle.includes(normTitle) || normTitle.includes(mlNormTitle);
+                                });
+                            }
+
+                            if (!match) {
+                                const tokens = normTitle.split(/\s+/).filter(t => t.length > 3 && !STOP_WORDS.has(t));
+                                if (tokens.length > 0) {
+                                    match = mlItems.find(ml => {
+                                        const mlNormTitle = normalizeText(ml.titulo);
+                                        const hitCount = tokens.filter(tok => mlNormTitle.includes(tok)).length;
+                                        return hitCount >= Math.min(2, tokens.length);
+                                    });
+                                }
+                            }
+
+                            if (match) {
+                                matchedImage = match.imagen_hd || '';
+                                matchedLink = match.link_ml || '';
+                            }
+                        }
+
                         return {
                             id: index,
                             codigo,
@@ -730,9 +729,10 @@
                             stock,
                             precio,
                             descripcion,
-                            // Pre-normalized search strings for ultra-fast matching
-                            normTitle: normalizeText(titulo),
-                            normCode: normalizeText(codigo),
+                            imagen_hd: matchedImage,
+                            link_ml: matchedLink,
+                            normTitle,
+                            normCode,
                             normDesc: normalizeText(descripcion)
                         };
                     }).filter(item => item.titulo && item.titulo !== 'Repuesto sin título');
@@ -742,7 +742,6 @@
                     setLoadingState(false);
                     renderProductsChunk();
 
-                    // Check if initial URL is a product URL (/repuesto/[codigo])
                     if (window.location.pathname.startsWith('/repuesto/')) {
                         const initialCode = decodeURIComponent(window.location.pathname.replace('/repuesto/', ''));
                         const foundItem = allProducts.find(p => p.codigo.toLowerCase() === initialCode.toLowerCase());
