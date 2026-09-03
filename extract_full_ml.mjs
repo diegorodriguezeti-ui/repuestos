@@ -66,17 +66,21 @@ const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
     try {
       await page.goto(pageUrl, { waitUntil: 'domcontentloaded', timeout: 45000 });
+      await sleep(3000);
     } catch (err) {
       console.log(`⚠️ Advertencia de navegación: ${err.message}. Continuando...`);
     }
 
     // Verificar si Mercado Libre solicita verificación humana (CAPTCHA)
     let currentUrl = page.url();
-    if (currentUrl.includes('account-verification') || currentUrl.includes('challenge')) {
+    let currentTitle = await page.title();
+
+    if (currentUrl.includes('account-verification') || currentUrl.includes('challenge') || currentTitle === 'Mercado Libre') {
       console.log("\n⚠️ ================================================================");
-      console.log("⚠️ MERCADO LIBRE SOLICITA VERIFICACIÓN EN PANTALLA.");
-      console.log("⚠️ Por favor resuélvelo en la ventana que se abrió en tu pantalla.");
-      console.log("⚠️ Esperando a que finalices la verificación...");
+      console.log("⚠️ MERCADO LIBRE SOLICITA VERIFICACIÓN DE SEGURIDAD EN PANTALLA.");
+      console.log(`⚠️ URL: ${page.url()}`);
+      console.log("⚠️ Por favor resuélvelo en la ventana abierta de tu navegador.");
+      console.log("⚠️ El script esperará pacientemente hasta que vuelvas al catálogo...");
       console.log("================================================================\n");
 
       while (page.url().includes('account-verification') || page.url().includes('challenge')) {
@@ -88,8 +92,8 @@ const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
         } catch (_) {}
         await sleep(2000);
       }
-      console.log("✅ Verificación completada o bypass detectado. Continuando...");
-      await sleep(3000);
+      console.log("✅ Verificación superada con éxito. Continuando con la extracción...");
+      await sleep(4000);
     }
 
     // Esperar selectores del catálogo
