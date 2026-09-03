@@ -10,14 +10,7 @@ const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
   const browser = await puppeteer.launch({
     headless: false,
     defaultViewport: null,
-    args: [
-      '--start-maximized',
-      '--no-sandbox',
-      '--disable-setuid-sandbox',
-      '--disable-blink-features=AutomationControlled',
-      '--window-size=1280,850'
-    ],
-    ignoreDefaultArgs: ['--enable-automation']
+    args: ['--no-sandbox', '--disable-setuid-sandbox', '--start-maximized']
   });
 
   const page = await browser.newPage();
@@ -71,29 +64,43 @@ const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
       console.log(`⚠️ Advertencia de navegación: ${err.message}. Continuando...`);
     }
 
-    // Verificar si Mercado Libre solicita verificación humana (CAPTCHA)
+    // 2. Si detecta que la URL incluye '/captcha/' o comprobaciones de seguridad
     let currentUrl = page.url();
     let currentTitle = await page.title();
 
-    if (currentUrl.includes('account-verification') || currentUrl.includes('challenge') || currentTitle === 'Mercado Libre') {
+    if (currentUrl.includes('/captcha/') || currentUrl.includes('account-verification') || currentUrl.includes('challenge') || currentTitle.includes('Seguridad')) {
       console.log("\n⚠️ ================================================================");
-      console.log("⚠️ MERCADO LIBRE SOLICITA VERIFICACIÓN DE SEGURIDAD EN PANTALLA.");
-      console.log(`⚠️ URL: ${page.url()}`);
-      console.log("⚠️ Por favor resuélvelo en la ventana abierta de tu navegador.");
-      console.log("⚠️ El script esperará pacientemente hasta que vuelvas al catálogo...");
+      console.log("⚠️ MERCADO LIBRE SOLICITA RESOLUCIÓN DE CAPTCHA EN PANTALLA.");
+      console.log(`⚠️ URL actual: ${page.url()}`);
+      console.log("⚠️ Resuelve el CAPTCHA manualmente en la ventana del navegador.");
+      console.log("⚠️ Esperando hasta 30 segundos o hasta que el listado de productos esté listo...");
       console.log("================================================================\n");
 
-      while (page.url().includes('account-verification') || page.url().includes('challenge')) {
+      let elapsedSeconds = 0;
+      const maxWaitSeconds = 30;
+
+      while (elapsedSeconds < maxWaitSeconds) {
         try {
-          const hasCards = await page.evaluate(() => 
-            Boolean(document.querySelector('.poly-card, .ui-search-layout__item, .poly-component__picture'))
+          const hasListado = await page.evaluate(() => 
+            Boolean(document.querySelector('.poly-card, .ui-search-layout__item, .poly-component__picture, li.ui-search-layout__item'))
           );
-          if (hasCards) break;
+          if (hasListado) {
+            console.log("✅ Selector del listado detectado con éxito antes del tiempo límite.");
+            break;
+          }
         } catch (_) {}
+
+        if (!page.url().includes('/captcha/') && !page.url().includes('account-verification')) {
+          console.log("✅ Salida de la pantalla de CAPTCHA detectada.");
+          break;
+        }
+
         await sleep(2000);
+        elapsedSeconds += 2;
+        console.log(`⏳ Esperando resolución del CAPTCHA... (${elapsedSeconds}s / ${maxWaitSeconds}s)`);
       }
-      console.log("✅ Verificación superada con éxito. Continuando con la extracción...");
-      await sleep(4000);
+
+      await sleep(3000);
     }
 
     // Esperar selectores del catálogo
