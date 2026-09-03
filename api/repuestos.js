@@ -3,7 +3,7 @@
  * Source: Google Sheets publicado en CSV
  */
 
-const CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRvzJVdhXxaMoT7qP_ZWKOHLUhQ_cVqBGtINkrKfKJmjbawjDqB02A36DcyD6QDUXAMq2OVCqvnzs0k/pub?output=csv';
+const CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRsLvqekIyjfzNbolMGUDJqFCXAplmu8OUlskAGo1aoo-ZyvrWgLZuFdphEaSOB1l_Tc1mPDKAydVk-/pub?output=csv';
 
 export default async function handler(req, res) {
   // CORS Headers

@@ -3,7 +3,7 @@
  * Leyendo códigos de repuestos desde Google Sheets CSV
  */
 
-const CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRvzJVdhXxaMoT7qP_ZWKOHLUhQ_cVqBGtINkrKfKJmjbawjDqB02A36DcyD6QDUXAMq2OVCqvnzs0k/pub?output=csv';
+const CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRsLvqekIyjfzNbolMGUDJqFCXAplmu8OUlskAGo1aoo-ZyvrWgLZuFdphEaSOB1l_Tc1mPDKAydVk-/pub?output=csv';
 
 function parseCsv(text) {
   const lines = [];
@@ -108,10 +108,13 @@ export default async function handler(req, res) {
     <priority>1.0</priority>
   </url>`);
 
-    // Product pages
+    // Product pages (filtrando exclusivamente publicaciones activas)
     rows.forEach(row => {
-      const code = String(row['codigo'] || '').trim();
-      const title = String(row['titulo'] || '').trim();
+      const estado = String(row['estado'] || '').trim().toLowerCase();
+      if (estado && estado !== 'activa') return;
+
+      const code = String(row['sku'] || row['codigo'] || row['número de publicación'] || '').trim();
+      const title = String(row['título'] || row['titulo'] || '').trim();
 
       if (code && title && !seenCodes.has(code.toLowerCase())) {
         seenCodes.add(code.toLowerCase());

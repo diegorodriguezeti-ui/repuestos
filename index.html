@@ -508,7 +508,7 @@
     <!-- HIGH-PERFORMANCE IN-MEMORY FUZZY SEARCH LOGIC -->
     <script>
         const WHATSAPP_PHONE = '584146754699';
-        const GOOGLE_SHEETS_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRvzJVdhXxaMoT7qP_ZWKOHLUhQ_cVqBGtINkrKfKJmjbawjDqB02A36DcyD6QDUXAMq2OVCqvnzs0k/pub?output=csv';
+        const GOOGLE_SHEETS_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRsLvqekIyjfzNbolMGUDJqFCXAplmu8OUlskAGo1aoo-ZyvrWgLZuFdphEaSOB1l_Tc1mPDKAydVk-/pub?output=csv';
         const BACKEND_PROXY_URL = '/api/repuestos';
 
         // Stop words to ignore during multi-word tokenized search
@@ -675,13 +675,19 @@
                 skipEmptyLines: true,
                 dynamicTyping: false,
                 complete: function(results) {
-                    const rows = results.data || [];
+                    const rawRows = results.data || [];
                     
-                    allProducts = rows.map((row, index) => {
-                        const codigo = String(row['codigo'] || row['Codigo'] || row['CODIGO'] || index + 1).trim();
-                        const titulo = String(row['titulo'] || row['Titulo'] || row['TITULO'] || 'Repuesto sin título').trim();
-                        const stock = String(row['stock'] || row['Stock'] || row['STOCK'] || '0').trim();
-                        const precio = String(row['precio'] || row['Precio'] || row['PRECIO'] || '0').trim();
+                    // Filtro obligatorio: Solo incluir productos con columna "Estado" exactamente igual a "Activa"
+                    const activeRows = rawRows.filter(row => {
+                        const estado = String(row['Estado'] || row['estado'] || row['ESTADO'] || '').trim().toLowerCase();
+                        return estado === 'activa';
+                    });
+
+                    allProducts = activeRows.map((row, index) => {
+                        const codigo = String(row['SKU'] || row['sku'] || row['codigo'] || row['Codigo'] || row['CODIGO'] || row['Número de publicación'] || (index + 1)).trim();
+                        const titulo = String(row['Título'] || row['Titulo'] || row['titulo'] || row['TITULO'] || 'Repuesto sin título').trim();
+                        const stock = String(row['Stock en tu depósito'] || row['stock'] || row['Stock'] || row['STOCK'] || 'Disponible').trim();
+                        const precio = String(row['Precio'] || row['precio'] || row['PRECIO'] || '0').trim();
                         const descripcion = String(row['Descripción'] || row['Descripcion'] || row['DESCRIPCION'] || row['descripción'] || 'Sin descripción detallada.').trim();
 
                         const normTitle = normalizeText(titulo);

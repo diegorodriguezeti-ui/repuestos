@@ -3,7 +3,7 @@
  * Pre-renderiza HTML completo con metadatos SEO y Schema.org para Google Bot y Usuarios
  */
 
-const CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRvzJVdhXxaMoT7qP_ZWKOHLUhQ_cVqBGtINkrKfKJmjbawjDqB02A36DcyD6QDUXAMq2OVCqvnzs0k/pub?output=csv';
+const CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRsLvqekIyjfzNbolMGUDJqFCXAplmu8OUlskAGo1aoo-ZyvrWgLZuFdphEaSOB1l_Tc1mPDKAydVk-/pub?output=csv';
 const WHATSAPP_PHONE = '584146754699';
 
 function parseCsv(text) {
@@ -96,8 +96,9 @@ export default async function handler(req, res) {
     // Normalize code search
     const normTargetCode = targetCode.toLowerCase();
     const item = rows.find(r => {
-      const code = String(r['codigo'] || '').trim().toLowerCase();
-      return code === normTargetCode;
+      const code = String(r['sku'] || r['codigo'] || r['número de publicación'] || '').trim().toLowerCase();
+      const estado = String(r['estado'] || '').trim().toLowerCase();
+      return (estado === 'activa' || !estado) && code === normTargetCode;
     });
 
     const proto = req.headers['x-forwarded-proto'] || 'https';
@@ -137,9 +138,9 @@ export default async function handler(req, res) {
     }
 
     // Extract item fields
-    const codigo = String(item['codigo'] || targetCode).trim();
-    const titulo = String(item['titulo'] || 'Repuesto Caterpillar / Autoparte').trim();
-    const stock = String(item['stock'] || 'Disponible').trim();
+    const codigo = String(item['sku'] || item['codigo'] || targetCode).trim();
+    const titulo = String(item['título'] || item['titulo'] || 'Repuesto Caterpillar / Autoparte').trim();
+    const stock = String(item['stock en tu depósito'] || item['stock'] || 'Disponible').trim();
     const precioRaw = String(item['precio'] || '0').trim();
     const descripcion = String(item['descripción'] || item['descripcion'] || 'Repuesto original de alta calidad disponible en ROD INVEST PARTS.').trim();
 
