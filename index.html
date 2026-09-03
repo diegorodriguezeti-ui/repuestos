@@ -398,6 +398,11 @@
 
             <!-- Modal Content (Scrollable) -->
             <div class="p-6 overflow-y-auto space-y-6 flex-grow">
+                <!-- Imagen HD del Producto en Modal -->
+                <div id="modalImageContainer" class="w-full h-64 bg-slate-950/90 rounded-2xl border border-slate-800 p-4 flex items-center justify-center overflow-hidden">
+                    <img id="modalImage" src="" alt="Repuesto HD" class="max-h-full max-w-full object-contain">
+                </div>
+
                 <div>
                     <h2 id="modalTitle" class="font-heading text-2xl font-black text-white leading-tight mb-2">
                         Título del Repuesto
@@ -614,8 +619,22 @@
 
         async function loadCsvDataSilently() {
             setLoadingState(true);
-            let csvText = '';
 
+            // Intentar cargar primero el JSON extraído de Mercado Libre (repuestos_ml.json)
+            try {
+                const mlRes = await fetch('repuestos_ml.json');
+                if (mlRes.ok) {
+                    const mlData = await mlRes.json();
+                    if (Array.isArray(mlData) && mlData.length > 0) {
+                        storeMlProducts(mlData);
+                        return;
+                    }
+                }
+            } catch (e) {
+                console.log("No se pudo cargar repuestos_ml.json local, intentando Google Sheets CSV...", e);
+            }
+
+            let csvText = '';
             try {
                 let response = await fetch(GOOGLE_SHEETS_CSV_URL);
 
@@ -646,6 +665,46 @@
 
                 setLoadingState(false);
                 renderErrorState(error.message);
+            }
+        }
+
+        function storeMlProducts(items) {
+            allProducts = items.map((row, index) => {
+                const id = row.id || index + 1;
+                const codigo = String(row.codigo || `MLV-${index + 1}`).trim();
+                const titulo = String(row.titulo || 'Repuesto sin título').trim();
+                const stock = String(row.stock || 'Disponible').trim();
+                const precio = String(row.precio || 'Consultar').trim();
+                const descripcion = String(row.descripcion || '').trim();
+                const imagen_hd = row.imagen_hd || '';
+                const link_ml = row.link_ml || '';
+
+                return {
+                    id,
+                    codigo,
+                    titulo,
+                    stock,
+                    precio,
+                    descripcion,
+                    imagen_hd,
+                    link_ml,
+                    normTitle: normalizeText(titulo),
+                    normCode: normalizeText(codigo),
+                    normDesc: normalizeText(descripcion)
+                };
+            }).filter(item => item.titulo && item.titulo !== 'Repuesto sin título');
+
+            filteredProducts = [...allProducts];
+            currentChunkCount = 1;
+            setLoadingState(false);
+            renderProductsChunk();
+
+            if (window.location.pathname.startsWith('/repuesto/')) {
+                const initialCode = decodeURIComponent(window.location.pathname.replace('/repuesto/', ''));
+                const foundItem = allProducts.find(p => p.codigo.toLowerCase() === initialCode.toLowerCase());
+                if (foundItem) {
+                    openProductModal(foundItem.id, true);
+                }
             }
         }
 
@@ -770,26 +829,35 @@
             const chunk = filteredProducts.slice(0, visibleCount);
 
             grid.innerHTML = chunk.map(item => {
-                const numericPrice = parseFloat(item.precio.replace(/[^0-9.-]+/g, '')) || 0;
+                const numericPrice = parseFloat(String(item.precio).replace(/[^0-9.-]+/g, '')) || 0;
                 const formattedPrice = numericPrice > 0 
-                    ? numericPrice.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })
+                    ? `US$ ${numericPrice.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`
                     : item.precio;
 
-                const rawWhatsappMessage = `Hola ROD INVEST PARTS! Me interesa el repuesto ${item.titulo} (Código: ${item.codigo}) con el precio de US$ ${formattedPrice} que vi en la web. ¿Tienen disponibilidad?`;
+                const rawWhatsappMessage = `Hola ROD INVEST PARTS! Me interesa el repuesto ${item.titulo} (Código: ${item.codigo}) con el precio de ${formattedPrice} que vi en la web. ¿Tienen disponibilidad?`;
                 const whatsappUrl = `https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent(rawWhatsappMessage)}`;
+                const imgSrc = item.imagen_hd || 'https://http2.mlstatic.com/frontend-assets/ui-navigation/5.21.22/mercadolibre/logo__small@2x.png';
 
                 return `
                     <div onclick="openProductModal(${item.id})" 
                         class="glass-card rounded-2xl overflow-hidden flex flex-col justify-between hover:shadow-card-hover transition-all duration-300 group border border-slate-800 cursor-pointer p-5">
                         
                         <div>
+                            <!-- Product Image HD Preview -->
+                            <div class="relative w-full h-48 mb-4 bg-slate-950/80 rounded-xl overflow-hidden border border-slate-800/80 flex items-center justify-center p-2 group-hover:border-tech-blue/50 transition-colors">
+                                <img src="${imgSrc}" 
+                                    alt="${escapeHtml(item.titulo)}" 
+                                    loading="lazy"
+                                    class="max-h-full max-w-full object-contain group-hover:scale-105 transition-transform duration-300">
+                            </div>
+
                             <!-- Card Header Badges -->
                             <div class="flex items-center justify-between gap-2 mb-3">
                                 <span class="bg-tech-blue/20 text-tech-blue-accent border border-tech-blue/40 text-[11px] font-extrabold px-2.5 py-1 rounded-full uppercase tracking-wider">
                                     Cód: ${escapeHtml(item.codigo)}
                                 </span>
                                 <span class="bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 text-[11px] font-bold px-2 py-0.5 rounded-full flex items-center gap-1">
-                                    <i data-lucide="box" class="w-3 h-3"></i> Stock: ${escapeHtml(item.stock)}
+                                    <i data-lucide="box" class="w-3 h-3"></i> ${escapeHtml(item.stock)}
                                 </span>
                             </div>
 
@@ -807,7 +875,7 @@
                             <div class="flex items-baseline gap-2 mb-4 pt-2 border-t border-slate-800/80">
                                 <span class="text-xs font-semibold text-slate-400">Precio:</span>
                                 <span class="font-heading font-black text-2xl text-ml-yellow tracking-tight">
-                                    US$ ${formattedPrice}
+                                    ${escapeHtml(formattedPrice)}
                                 </span>
                             </div>
                         </div>
@@ -847,18 +915,27 @@
             const item = allProducts.find(p => p.id === productId);
             if (!item) return;
 
-            const numericPrice = parseFloat(item.precio.replace(/[^0-9.-]+/g, '')) || 0;
+            const numericPrice = parseFloat(String(item.precio).replace(/[^0-9.-]+/g, '')) || 0;
             const formattedPrice = numericPrice > 0 
-                ? numericPrice.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })
+                ? `US$ ${numericPrice.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`
                 : item.precio;
 
             document.getElementById('modalSkuBadge').textContent = `Código: ${item.codigo}`;
-            document.getElementById('modalStockBadge').textContent = `Stock: ${item.stock} uds`;
+            document.getElementById('modalStockBadge').textContent = `Stock: ${item.stock}`;
             document.getElementById('modalTitle').textContent = item.titulo;
-            document.getElementById('modalPrice').textContent = `US$ ${formattedPrice}`;
+            document.getElementById('modalPrice').textContent = formattedPrice;
             document.getElementById('modalDescription').textContent = item.descripcion;
 
-            const rawWhatsappMessage = `Hola ROD INVEST PARTS! Me interesa el repuesto ${item.titulo} (Código: ${item.codigo}) con el precio de US$ ${formattedPrice} que vi en la web. ¿Tienen disponibilidad?`;
+            const modalImageEl = document.getElementById('modalImage');
+            const modalImageContainer = document.getElementById('modalImageContainer');
+            if (item.imagen_hd) {
+                modalImageEl.src = item.imagen_hd;
+                modalImageContainer.classList.remove('hidden');
+            } else {
+                modalImageContainer.classList.add('hidden');
+            }
+
+            const rawWhatsappMessage = `Hola ROD INVEST PARTS! Me interesa el repuesto ${item.titulo} (Código: ${item.codigo}) con el precio de ${formattedPrice} que vi en la web. ¿Tienen disponibilidad?`;
             const whatsappUrl = `https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent(rawWhatsappMessage)}`;
             document.getElementById('modalWhatsappBtn').href = whatsappUrl;
 
