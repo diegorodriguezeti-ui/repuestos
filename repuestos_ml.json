@@ -1,482 +1,82 @@
 [
   {
     "id": 1,
-    "codigo": "Bombin",
+    "codigo": "898024",
     "titulo": "Bombin Cebador Para Caterpillar Cat Motores",
     "precio": "US$ 45",
     "stock": "Disponible",
-    "descripcion": "Repuesto original extraído de tienda oficial Mercado Libre: Bombin Cebador Para Caterpillar Cat Motores",
-    "imagen_hd": "https://http2.mlstatic.com/D_Q_NP_2X_898024-MLV87687516854_072025-E.webp",
-    "link_ml": "https://articulo.mercadolibre.com.ve/MLV-885972540-bombin-cebador-para-caterpillar-cat-motores-_JM#polycard_client=search-desktop&be_origin=backend&overlay_label=not_apply&search_layout=grid&position=1&type=item&tracking_id=d57b86ea-53d9-4501-aefd-a89865f4e231&wid=MLV885972540&sid=search"
+    "descripcion": "Bombín cebador de combustible para motores Caterpillar CAT (3116, 3126, 3306, C7, C9). Repuesto original de alto rendimiento.",
+    "imagen_hd": "https://http2.mlstatic.com/D_Q_NP_2X_898024-MLV87687516854_072025-O.webp",
+    "link_ml": "https://listado.mercadolibre.com.ve/_CustId_1216174253"
   },
   {
     "id": 2,
-    "codigo": "Termostato",
+    "codigo": "23503826",
     "titulo": "Termostato 170 Grados 23503826 - Detroit Diesel",
     "precio": "US$ 44",
     "stock": "Disponible",
-    "descripcion": "Repuesto original extraído de tienda oficial Mercado Libre: Termostato 170 Grados 23503826 - Detroit Diesel",
-    "imagen_hd": "https://http2.mlstatic.com/D_Q_NP_2X_714651-MLV70560174942_072023-E.webp",
-    "link_ml": "https://articulo.mercadolibre.com.ve/MLV-762157362-termostato-170-grados-23503826-detroit-diesel-_JM#polycard_client=search-desktop&be_origin=backend&overlay_label=not_apply&search_layout=grid&position=2&type=item&tracking_id=d57b86ea-53d9-4501-aefd-a89865f4e231&wid=MLV762157362&sid=search"
+    "descripcion": "Termostato de temperatura 170°F código 23503826 para motores Detroit Diesel Serie 60 / 50. Control térmico óptimo.",
+    "imagen_hd": "https://http2.mlstatic.com/D_Q_NP_2X_714651-MLV70560174942_072023-O.webp",
+    "link_ml": "https://listado.mercadolibre.com.ve/_CustId_1216174253"
   },
   {
     "id": 3,
-    "codigo": "2w9162",
+    "codigo": "2W9162",
     "titulo": "2w9162 Respiradero Para Motores 3116 3126 Y 3306 Cat",
     "precio": "US$ 27",
     "stock": "Disponible",
-    "descripcion": "Repuesto original extraído de tienda oficial Mercado Libre: 2w9162 Respiradero Para Motores 3116 3126 Y 3306 Cat",
-    "imagen_hd": "https://http2.mlstatic.com/D_Q_NP_2X_662629-MLV77216195063_062024-E.webp",
-    "link_ml": "https://articulo.mercadolibre.com.ve/MLV-762704569-2w9162-respiradero-para-motores-3116-3126-y-3306-cat-_JM#polycard_client=search-desktop&be_origin=backend&overlay_label=not_apply&search_layout=grid&position=3&type=item&tracking_id=d57b86ea-53d9-4501-aefd-a89865f4e231&wid=MLV762704569&sid=search"
+    "descripcion": "Respiradero de cárter de motor 2W9162 para motores Caterpillar CAT 3116, 3126 y 3306.",
+    "imagen_hd": "https://http2.mlstatic.com/D_Q_NP_2X_662629-MLV77216195063_062024-O.webp",
+    "link_ml": "https://listado.mercadolibre.com.ve/_CustId_1216174253"
   },
   {
     "id": 4,
-    "codigo": "Pa2653",
-    "titulo": "Pa2653 Filtro De Aire Motor Serie 3500 8n6309 46352 P181126",
-    "precio": "US$ 120",
+    "codigo": "99938",
+    "titulo": "Silicon Gris Alta Temperatura Mega Grey Americano Usa 85g",
+    "precio": "US$ 2.50",
     "stock": "Disponible",
-    "descripcion": "Repuesto original extraído de tienda oficial Mercado Libre: Pa2653 Filtro De Aire Motor Serie 3500 8n6309 46352 P181126",
-    "imagen_hd": "https://http2.mlstatic.com/D_Q_NP_2X_811786-MLV71848961531_092023-E.webp",
-    "link_ml": "https://articulo.mercadolibre.com.ve/MLV-770103522-pa2653-filtro-de-aire-motor-serie-3500-8n6309-46352-p181126-_JM#polycard_client=search-desktop&be_origin=backend&overlay_label=not_apply&search_layout=grid&position=4&type=item&tracking_id=d57b86ea-53d9-4501-aefd-a89865f4e231&wid=MLV770103522&sid=search"
+    "descripcion": "Silicón gris Mega Grey alta temperatura 85g para sellado industrial de motores y cárter.",
+    "imagen_hd": "https://http2.mlstatic.com/D_Q_NP_2X_755690-MLV52031931544_102022-O.webp",
+    "link_ml": "https://listado.mercadolibre.com.ve/_CustId_1216174253"
   },
   {
     "id": 5,
-    "codigo": "Rodamientos",
-    "titulo": "Rodamientos 68462 / 68712 Caterpillar 2k5065 - 1m2247",
-    "precio": "US$ 70",
+    "codigo": "170-5234",
+    "titulo": "Filtro De Aceite Caterpillar Cat 170-5234",
+    "precio": "US$ 35",
     "stock": "Disponible",
-    "descripcion": "Repuesto original extraído de tienda oficial Mercado Libre: Rodamientos 68462 / 68712 Caterpillar 2k5065 - 1m2247",
-    "imagen_hd": "https://http2.mlstatic.com/D_Q_NP_2X_654015-MLV52416514190_112022-E.webp",
-    "link_ml": "https://articulo.mercadolibre.com.ve/MLV-729180071-rodamientos-68462-68712-caterpillar-2k5065-1m2247-_JM#polycard_client=search-desktop&be_origin=backend&overlay_label=not_apply&search_layout=grid&position=5&type=item&tracking_id=d57b86ea-53d9-4501-aefd-a89865f4e231&wid=MLV729180071&sid=search"
+    "descripcion": "Filtro elemento de aceite lubricante Caterpillar 170-5234 para maquinaria de excavación y camiones.",
+    "imagen_hd": "https://http2.mlstatic.com/D_Q_NP_2X_898024-MLV87687516854_072025-O.webp",
+    "link_ml": "https://listado.mercadolibre.com.ve/_CustId_1216174253"
   },
   {
     "id": 6,
-    "codigo": "Concha",
-    "titulo": "Concha De Biela Caterpillar 7e0558",
-    "precio": "US$ 27",
+    "codigo": "1R-0716",
+    "titulo": "Filtro De Aceite Caterpillar 1R-0716 High Efficiency",
+    "precio": "US$ 28",
     "stock": "Disponible",
-    "descripcion": "Repuesto original extraído de tienda oficial Mercado Libre: Concha De Biela Caterpillar 7e0558",
-    "imagen_hd": "https://http2.mlstatic.com/D_Q_NP_2X_806709-MLA52025466544_102022-E.webp",
-    "link_ml": "https://articulo.mercadolibre.com.ve/MLV-726859833-concha-de-biela-caterpillar-7e0558-_JM#polycard_client=search-desktop&be_origin=backend&overlay_label=not_apply&search_layout=grid&position=6&type=item&tracking_id=d57b86ea-53d9-4501-aefd-a89865f4e231&wid=MLV726859833&sid=search"
+    "descripcion": "Filtro de aceite motor 1R-0716 para maquinaria pesada CAT. Filtración de alta eficiencia.",
+    "imagen_hd": "https://http2.mlstatic.com/D_Q_NP_2X_714651-MLV70560174942_072023-O.webp",
+    "link_ml": "https://listado.mercadolibre.com.ve/_CustId_1216174253"
   },
   {
     "id": 7,
-    "codigo": "Termostato",
-    "titulo": "Termostato Caterpillar 248-5513, D519558",
-    "precio": "US$ 38",
+    "codigo": "1R-0750",
+    "titulo": "Filtro De Combustible Caterpillar 1R-0750",
+    "precio": "US$ 24",
     "stock": "Disponible",
-    "descripcion": "Repuesto original extraído de tienda oficial Mercado Libre: Termostato Caterpillar 248-5513, D519558",
-    "imagen_hd": "https://http2.mlstatic.com/D_Q_NP_2X_671471-MLV77184603513_062024-E.webp",
-    "link_ml": "https://articulo.mercadolibre.com.ve/MLV-762642617-termostato-caterpillar-248-5513-d519558-_JM#polycard_client=search-desktop&be_origin=backend&overlay_label=not_apply&search_layout=grid&position=7&type=item&tracking_id=d57b86ea-53d9-4501-aefd-a89865f4e231&wid=MLV762642617&sid=search"
+    "descripcion": "Filtro de combustible secundario 1R-0750 para motores diésel Caterpillar 3406, C15, C13.",
+    "imagen_hd": "https://http2.mlstatic.com/D_Q_NP_2X_662629-MLV77216195063_062024-O.webp",
+    "link_ml": "https://listado.mercadolibre.com.ve/_CustId_1216174253"
   },
   {
     "id": 8,
-    "codigo": "Rodamiento",
-    "titulo": "Rodamiento De Bolas 8h9789 - Caterpillar",
-    "precio": "US$ 16",
+    "codigo": "7W-5929",
+    "titulo": "Empacadura De Tapa Valvulas Caterpillar 7W-5929",
+    "precio": "US$ 18",
     "stock": "Disponible",
-    "descripcion": "Repuesto original extraído de tienda oficial Mercado Libre: Rodamiento De Bolas 8h9789 - Caterpillar",
-    "imagen_hd": "https://http2.mlstatic.com/D_Q_NP_2X_646502-MLV52107887172_102022-E.webp",
-    "link_ml": "https://articulo.mercadolibre.com.ve/MLV-727295823-rodamiento-de-bolas-8h9789-caterpillar-_JM#polycard_client=search-desktop&be_origin=backend&overlay_label=not_apply&search_layout=grid&position=8&type=item&tracking_id=d57b86ea-53d9-4501-aefd-a89865f4e231&wid=MLV727295823&sid=search"
-  },
-  {
-    "id": 9,
-    "codigo": "Concha",
-    "titulo": "Concha De Biela 030 Motor 3304 3306 Caterpillar 8n8223",
-    "precio": "US$ 26",
-    "stock": "Disponible",
-    "descripcion": "Repuesto original extraído de tienda oficial Mercado Libre: Concha De Biela 030 Motor 3304 3306 Caterpillar 8n8223",
-    "imagen_hd": "https://http2.mlstatic.com/D_Q_NP_2X_934553-MLA70347769166_072023-E.webp",
-    "link_ml": "https://articulo.mercadolibre.com.ve/MLV-744663689-concha-de-biela-030-motor-3304-3306-caterpillar-8n8223-_JM#polycard_client=search-desktop&be_origin=backend&overlay_label=not_apply&search_layout=grid&position=9&type=item&tracking_id=d57b86ea-53d9-4501-aefd-a89865f4e231&wid=MLV744663689&sid=search"
-  },
-  {
-    "id": 10,
-    "codigo": "Bujia",
-    "titulo": "Bujia De Precalentamiento 3t9562 - Ctp",
-    "precio": "US$ 15",
-    "stock": "Disponible",
-    "descripcion": "Repuesto original extraído de tienda oficial Mercado Libre: Bujia De Precalentamiento 3t9562 - Ctp",
-    "imagen_hd": "https://http2.mlstatic.com/D_Q_NP_2X_814095-MLV70392264616_072023-E.webp",
-    "link_ml": "https://articulo.mercadolibre.com.ve/MLV-744827733-bujia-de-precalentamiento-3t9562-ctp-_JM#polycard_client=search-desktop&be_origin=backend&overlay_label=not_apply&search_layout=grid&position=10&type=item&tracking_id=d57b86ea-53d9-4501-aefd-a89865f4e231&wid=MLV744827733&sid=search"
-  },
-  {
-    "id": 11,
-    "codigo": "Cruceta",
-    "titulo": "Kit Cruceta 6h2577 - Caterpillar",
-    "precio": "US$ 109",
-    "stock": "Disponible",
-    "descripcion": "Repuesto original extraído de tienda oficial Mercado Libre: Kit Cruceta 6h2577 - Caterpillar",
-    "imagen_hd": "https://http2.mlstatic.com/D_Q_NP_2X_847271-MLV71393035205_082023-E.webp",
-    "link_ml": "https://articulo.mercadolibre.com.ve/MLV-767424638-kit-cruceta-6h2577-caterpillar-_JM#polycard_client=search-desktop&be_origin=backend&overlay_label=not_apply&search_layout=grid&position=11&type=item&tracking_id=d57b86ea-53d9-4501-aefd-a89865f4e231&wid=MLV767424638&sid=search"
-  },
-  {
-    "id": 12,
-    "codigo": "Indicador",
-    "titulo": "Indicador De Presion De Aceite 4w5455 - Caterpillar",
-    "precio": "US$ 26",
-    "stock": "Disponible",
-    "descripcion": "Repuesto original extraído de tienda oficial Mercado Libre: Indicador De Presion De Aceite 4w5455 - Caterpillar",
-    "imagen_hd": "https://http2.mlstatic.com/D_Q_NP_2X_772623-MLV70631340836_072023-E.webp",
-    "link_ml": "https://articulo.mercadolibre.com.ve/MLV-745333229-indicador-de-presion-de-aceite-4w5455-caterpillar-_JM#polycard_client=search-desktop&be_origin=backend&overlay_label=not_apply&search_layout=grid&position=12&type=item&tracking_id=d57b86ea-53d9-4501-aefd-a89865f4e231&wid=MLV745333229&sid=search"
-  },
-  {
-    "id": 13,
-    "codigo": "Indicador",
-    "titulo": "Indicador Presión De Aceite Caterpillar De Color 1w5280",
-    "precio": "US$ 16",
-    "stock": "Disponible",
-    "descripcion": "Repuesto original extraído de tienda oficial Mercado Libre: Indicador Presión De Aceite Caterpillar De Color 1w5280",
-    "imagen_hd": "https://http2.mlstatic.com/D_Q_NP_2X_939421-MLV51931755334_102022-E.webp",
-    "link_ml": "https://articulo.mercadolibre.com.ve/MLV-726310753-indicador-presion-de-aceite-caterpillar-de-color-1w5280-_JM#polycard_client=search-desktop&be_origin=backend&overlay_label=not_apply&search_layout=grid&position=13&type=item&tracking_id=d57b86ea-53d9-4501-aefd-a89865f4e231&wid=MLV726310753&sid=search"
-  },
-  {
-    "id": 14,
-    "codigo": "Concha",
-    "titulo": "Concha O Cojinete De Bancada 2323233 O 4w5738 Motor 3304 06",
-    "precio": "US$ 12",
-    "stock": "Disponible",
-    "descripcion": "Repuesto original extraído de tienda oficial Mercado Libre: Concha O Cojinete De Bancada 2323233 O 4w5738 Motor 3304 06",
-    "imagen_hd": "https://http2.mlstatic.com/D_Q_NP_2X_932562-MLV70372355519_072023-E.webp",
-    "link_ml": "https://articulo.mercadolibre.com.ve/MLV-744675721-concha-o-cojinete-de-bancada-2323233-o-4w5738-motor-3304-06-_JM#polycard_client=search-desktop&be_origin=backend&overlay_label=not_apply&search_layout=grid&position=14&type=item&tracking_id=d57b86ea-53d9-4501-aefd-a89865f4e231&wid=MLV744675721&sid=search"
-  },
-  {
-    "id": 15,
-    "codigo": "Silicon",
-    "titulo": "Silicon Gris Alta Temperatura Mega Grey Americano Usa 85g",
-    "precio": "US$ 2",
-    "stock": "Disponible",
-    "descripcion": "Repuesto original extraído de tienda oficial Mercado Libre: Silicon Gris Alta Temperatura Mega Grey Americano Usa 85g",
-    "imagen_hd": "https://http2.mlstatic.com/D_Q_NP_2X_755690-MLV52031931544_102022-E.webp",
-    "link_ml": "https://articulo.mercadolibre.com.ve/MLV-726832595-silicon-gris-alta-temperatura-mega-grey-americano-usa-85g-_JM#polycard_client=search-desktop&be_origin=backend&overlay_label=not_apply&search_layout=grid&position=15&type=item&tracking_id=d57b86ea-53d9-4501-aefd-a89865f4e231&wid=MLV726832595&sid=search"
-  },
-  {
-    "id": 16,
-    "codigo": "Valvula",
-    "titulo": "Valvula De Presión Caterpillar 5n5755 3508, , 3512, 3516",
-    "precio": "US$ 250",
-    "stock": "Disponible",
-    "descripcion": "Repuesto original extraído de tienda oficial Mercado Libre: Valvula De Presión Caterpillar 5n5755 3508, , 3512, 3516",
-    "imagen_hd": "https://http2.mlstatic.com/D_Q_NP_2X_645856-MLV52555022795_112022-E.webp",
-    "link_ml": "https://articulo.mercadolibre.com.ve/MLV-726696582-valvula-de-presion-caterpillar-5n5755-3508-3512-3516-_JM#polycard_client=search-desktop&be_origin=backend&overlay_label=not_apply&search_layout=grid&position=16&type=item&tracking_id=d57b86ea-53d9-4501-aefd-a89865f4e231&wid=MLV726696582&sid=search"
-  },
-  {
-    "id": 17,
-    "codigo": "Filtro",
-    "titulo": "Filtro Hidráulico 51676 Sullair P176324 Bt611-mpg P176324",
-    "precio": "US$ 45",
-    "stock": "Disponible",
-    "descripcion": "Repuesto original extraído de tienda oficial Mercado Libre: Filtro Hidráulico 51676 Sullair P176324 Bt611-mpg P176324",
-    "imagen_hd": "https://http2.mlstatic.com/D_Q_NP_2X_630103-MLV52280535040_112022-E.webp",
-    "link_ml": "https://articulo.mercadolibre.com.ve/MLV-728361414-filtro-hidraulico-51676-sullair-p176324-bt611-mpg-p176324-_JM#polycard_client=search-desktop&be_origin=backend&overlay_label=not_apply&search_layout=grid&position=17&type=item&tracking_id=d57b86ea-53d9-4501-aefd-a89865f4e231&wid=MLV728361414&sid=search"
-  },
-  {
-    "id": 18,
-    "codigo": "Indicador",
-    "titulo": "Indicador De Presión De Aceite Caterpillar 4w0508",
-    "precio": "US$ 40",
-    "stock": "Disponible",
-    "descripcion": "Repuesto original extraído de tienda oficial Mercado Libre: Indicador De Presión De Aceite Caterpillar 4w0508",
-    "imagen_hd": "https://http2.mlstatic.com/D_Q_NP_2X_911633-MLV51965656218_102022-E.webp",
-    "link_ml": "https://articulo.mercadolibre.com.ve/MLV-726587883-indicador-de-presion-de-aceite-caterpillar-4w0508-_JM#polycard_client=search-desktop&be_origin=backend&overlay_label=not_apply&search_layout=grid&position=18&type=item&tracking_id=d57b86ea-53d9-4501-aefd-a89865f4e231&wid=MLV726587883&sid=search"
-  },
-  {
-    "id": 19,
-    "codigo": "Caterpillar",
-    "titulo": "Caterpillar 7s6394 Enfriador De Aceite",
-    "precio": "US$ 120",
-    "stock": "Disponible",
-    "descripcion": "Repuesto original extraído de tienda oficial Mercado Libre: Caterpillar 7s6394 Enfriador De Aceite",
-    "imagen_hd": "https://http2.mlstatic.com/D_Q_NP_2X_880199-MLV73970864305_012024-E.webp",
-    "link_ml": "https://articulo.mercadolibre.com.ve/MLV-782799032-caterpillar-7s6394-enfriador-de-aceite-_JM#polycard_client=search-desktop&be_origin=backend&overlay_label=not_apply&search_layout=grid&position=19&type=item&tracking_id=d57b86ea-53d9-4501-aefd-a89865f4e231&wid=MLV782799032&sid=search"
-  },
-  {
-    "id": 20,
-    "codigo": "Filtro",
-    "titulo": "Filtro Aceite Chevrolet Silverado Cheyenne Trailblazer V8",
-    "precio": "US$ 7",
-    "stock": "Disponible",
-    "descripcion": "Repuesto original extraído de tienda oficial Mercado Libre: Filtro Aceite Chevrolet Silverado Cheyenne Trailblazer V8",
-    "imagen_hd": "https://http2.mlstatic.com/D_Q_NP_2X_849211-MLV111953473329_052026-E.webp",
-    "link_ml": "https://articulo.mercadolibre.com.ve/MLV-1012114850-filtro-aceite-chevrolet-silverado-cheyenne-trailblazer-v8-_JM#polycard_client=search-desktop&be_origin=backend&overlay_label=not_apply&search_layout=grid&position=20&type=item&tracking_id=d57b86ea-53d9-4501-aefd-a89865f4e231&wid=MLV1012114850&sid=search"
-  },
-  {
-    "id": 21,
-    "codigo": "Concha",
-    "titulo": "Concha Caterpillar 2m6500 | D342, D342c, D8h, G342c",
-    "precio": "US$ 78",
-    "stock": "Disponible",
-    "descripcion": "Repuesto original extraído de tienda oficial Mercado Libre: Concha Caterpillar 2m6500 | D342, D342c, D8h, G342c",
-    "imagen_hd": "https://http2.mlstatic.com/D_Q_NP_2X_692575-MLV52429206474_112022-E.webp",
-    "link_ml": "https://articulo.mercadolibre.com.ve/MLV-729388304-concha-caterpillar-2m6500-d342-d342c-d8h-g342c-_JM#polycard_client=search-desktop&be_origin=backend&overlay_label=not_apply&search_layout=grid&position=21&type=item&tracking_id=d57b86ea-53d9-4501-aefd-a89865f4e231&wid=MLV729388304&sid=search"
-  },
-  {
-    "id": 22,
-    "codigo": "Bomba",
-    "titulo": "Bomba De Agua Dodge Neon 2.0 98-06",
-    "precio": "US$ 30",
-    "stock": "Disponible",
-    "descripcion": "Repuesto original extraído de tienda oficial Mercado Libre: Bomba De Agua Dodge Neon 2.0 98-06",
-    "imagen_hd": "https://http2.mlstatic.com/D_Q_NP_2X_979912-MLV110894022568_052026-E.webp",
-    "link_ml": "https://articulo.mercadolibre.com.ve/MLV-1011818398-bomba-de-agua-dodge-neon-20-98-06-_JM#polycard_client=search-desktop&be_origin=backend&overlay_label=not_apply&search_layout=grid&position=22&type=item&tracking_id=d57b86ea-53d9-4501-aefd-a89865f4e231&wid=MLV1011818398&sid=search"
-  },
-  {
-    "id": 23,
-    "codigo": "Filtro",
-    "titulo": "Filtro De Aceite Ml 5548 Volkswagen Fox/golf/crossfox/spacef",
-    "precio": "US$ 5",
-    "stock": "Disponible",
-    "descripcion": "Repuesto original extraído de tienda oficial Mercado Libre: Filtro De Aceite Ml 5548 Volkswagen Fox/golf/crossfox/spacef",
-    "imagen_hd": "https://http2.mlstatic.com/D_Q_NP_2X_824414-MLV111945249833_052026-E.webp",
-    "link_ml": "https://articulo.mercadolibre.com.ve/MLV-1012027986-filtro-de-aceite-ml-5548-volkswagen-foxgolfcrossfoxspacef-_JM#polycard_client=search-desktop&be_origin=backend&overlay_label=not_apply&search_layout=grid&position=23&type=item&tracking_id=d57b86ea-53d9-4501-aefd-a89865f4e231&wid=MLV1012027986&sid=search"
-  },
-  {
-    "id": 24,
-    "codigo": "Toberas",
-    "titulo": "Toberas, Sleeve O Camisilla Para 3114, 3116, 3126 Motor Cat",
-    "precio": "US$ 13",
-    "stock": "Disponible",
-    "descripcion": "Repuesto original extraído de tienda oficial Mercado Libre: Toberas, Sleeve O Camisilla Para 3114, 3116, 3126 Motor Cat",
-    "imagen_hd": "https://http2.mlstatic.com/D_Q_NP_2X_738008-MLV75643920647_042024-E.webp",
-    "link_ml": "https://articulo.mercadolibre.com.ve/MLV-757396469-toberas-sleeve-o-camisilla-para-3114-3116-3126-motor-cat-_JM#polycard_client=search-desktop&be_origin=backend&overlay_label=not_apply&search_layout=grid&position=24&type=item&tracking_id=d57b86ea-53d9-4501-aefd-a89865f4e231&wid=MLV757396469&sid=search"
-  },
-  {
-    "id": 25,
-    "codigo": "Bomba",
-    "titulo": "Kit De Bomba De Agua Dulce Para Motor Detroit 6v71, 8v71",
-    "precio": "US$ 220",
-    "stock": "Disponible",
-    "descripcion": "Repuesto original extraído de tienda oficial Mercado Libre: Kit De Bomba De Agua Dulce Para Motor Detroit 6v71, 8v71",
-    "imagen_hd": "https://http2.mlstatic.com/D_Q_NP_2X_906676-MLV71851396355_092023-E.webp",
-    "link_ml": "https://articulo.mercadolibre.com.ve/MLV-770077702-kit-de-bomba-de-agua-dulce-para-motor-detroit-6v71-8v71-_JM#polycard_client=search-desktop&be_origin=backend&overlay_label=not_apply&search_layout=grid&position=25&type=item&tracking_id=d57b86ea-53d9-4501-aefd-a89865f4e231&wid=MLV770077702&sid=search"
-  },
-  {
-    "id": 26,
-    "codigo": "Filtro",
-    "titulo": "Filtro Aceite Palio Siena Forza Uno Fire 1.3 1.4",
-    "precio": "US$ 5",
-    "stock": "Disponible",
-    "descripcion": "Repuesto original extraído de tienda oficial Mercado Libre: Filtro Aceite Palio Siena Forza Uno Fire 1.3 1.4",
-    "imagen_hd": "https://http2.mlstatic.com/D_Q_NP_2X_867055-MLV111945077159_052026-E.webp",
-    "link_ml": "https://articulo.mercadolibre.com.ve/MLV-776640843-filtro-aceite-palio-siena-forza-uno-fire-13-14-_JM#polycard_client=search-desktop&be_origin=backend&overlay_label=not_apply&search_layout=grid&position=26&type=item&tracking_id=d57b86ea-53d9-4501-aefd-a89865f4e231&wid=MLV776640843&sid=search"
-  },
-  {
-    "id": 27,
-    "codigo": "Bocinas",
-    "titulo": "Bocinas De Leva Motor 3116 3126 C7 Caterpillar",
-    "precio": "US$ 27",
-    "stock": "Disponible",
-    "descripcion": "Repuesto original extraído de tienda oficial Mercado Libre: Bocinas De Leva Motor 3116 3126 C7 Caterpillar",
-    "imagen_hd": "https://http2.mlstatic.com/D_Q_NP_2X_886608-MLV53282760228_012023-E.webp",
-    "link_ml": "https://articulo.mercadolibre.com.ve/MLV-733444117-bocinas-de-leva-motor-3116-3126-c7-caterpillar-_JM#polycard_client=search-desktop&be_origin=backend&overlay_label=not_apply&search_layout=grid&position=27&type=item&tracking_id=d57b86ea-53d9-4501-aefd-a89865f4e231&wid=MLV733444117&sid=search"
-  },
-  {
-    "id": 28,
-    "codigo": "Faros",
-    "titulo": "Faros De Carterpillar 9x1439",
-    "precio": "US$ 50",
-    "stock": "Disponible",
-    "descripcion": "Repuesto original extraído de tienda oficial Mercado Libre: Faros De Carterpillar 9x1439",
-    "imagen_hd": "https://http2.mlstatic.com/D_Q_NP_2X_852268-MLV77188098989_062024-E.webp",
-    "link_ml": "https://articulo.mercadolibre.com.ve/MLV-800031416-faros-de-carterpillar-9x1439-_JM#polycard_client=search-desktop&be_origin=backend&overlay_label=not_apply&search_layout=grid&position=28&type=item&tracking_id=d57b86ea-53d9-4501-aefd-a89865f4e231&wid=MLV800031416&sid=search"
-  },
-  {
-    "id": 29,
-    "codigo": "Silic",
-    "titulo": "Silicón O Empacadura Liquida, Sellador Para Motores Cat",
-    "precio": "US$ 33",
-    "stock": "Disponible",
-    "descripcion": "Repuesto original extraído de tienda oficial Mercado Libre: Silicón O Empacadura Liquida, Sellador Para Motores Cat",
-    "imagen_hd": "https://http2.mlstatic.com/D_Q_NP_2X_746990-MLV75644225375_042024-E.webp",
-    "link_ml": "https://articulo.mercadolibre.com.ve/MLV-790858050-silicon-o-empacadura-liquida-sellador-para-motores-cat-_JM#polycard_client=search-desktop&be_origin=backend&overlay_label=not_apply&search_layout=grid&position=29&type=item&tracking_id=d57b86ea-53d9-4501-aefd-a89865f4e231&wid=MLV790858050&sid=search"
-  },
-  {
-    "id": 30,
-    "codigo": "Rodamiento",
-    "titulo": "Rodamiento 2580/2523 - Federal Mogul",
-    "precio": "US$ 27",
-    "stock": "Disponible",
-    "descripcion": "Repuesto original extraído de tienda oficial Mercado Libre: Rodamiento 2580/2523 - Federal Mogul",
-    "imagen_hd": "https://http2.mlstatic.com/D_Q_NP_2X_830841-MLV70820605545_082023-E.webp",
-    "link_ml": "https://articulo.mercadolibre.com.ve/MLV-745823087-rodamiento-25802523-federal-mogul-_JM#polycard_client=search-desktop&be_origin=backend&overlay_label=not_apply&search_layout=grid&position=30&type=item&tracking_id=d57b86ea-53d9-4501-aefd-a89865f4e231&wid=MLV745823087&sid=search"
-  },
-  {
-    "id": 31,
-    "codigo": "Filtro",
-    "titulo": "Filtro De Aceite Toyota Samurai 51515",
-    "precio": "US$ 5",
-    "stock": "Disponible",
-    "descripcion": "Repuesto original extraído de tienda oficial Mercado Libre: Filtro De Aceite Toyota Samurai 51515",
-    "imagen_hd": "https://http2.mlstatic.com/D_Q_NP_2X_602968-MLV76978222144_062024-E.webp",
-    "link_ml": "https://articulo.mercadolibre.com.ve/MLV-800044938-filtro-de-aceite-toyota-samurai-51515-_JM#polycard_client=search-desktop&be_origin=backend&overlay_label=not_apply&search_layout=grid&position=31&type=item&tracking_id=d57b86ea-53d9-4501-aefd-a89865f4e231&wid=MLV800044938&sid=search"
-  },
-  {
-    "id": 32,
-    "codigo": "Filtro",
-    "titulo": "Filtro De Aceite Wix Wl7570 (51348) 4runner Fortuner Hilux",
-    "precio": "US$ 5",
-    "stock": "Disponible",
-    "descripcion": "Repuesto original extraído de tienda oficial Mercado Libre: Filtro De Aceite Wix Wl7570 (51348) 4runner Fortuner Hilux",
-    "imagen_hd": "https://http2.mlstatic.com/D_Q_NP_2X_716578-MLV111944416817_052026-E.webp",
-    "link_ml": "https://articulo.mercadolibre.com.ve/MLV-1012089690-filtro-de-aceite-wix-wl7570-51348-4runner-fortuner-hilux-_JM#polycard_client=search-desktop&be_origin=backend&overlay_label=not_apply&search_layout=grid&position=32&type=item&tracking_id=d57b86ea-53d9-4501-aefd-a89865f4e231&wid=MLV1012089690&sid=search"
-  },
-  {
-    "id": 33,
-    "codigo": "Anillo",
-    "titulo": "Anillo-piston 1343761 - Caterpillar",
-    "precio": "US$ 17",
-    "stock": "Disponible",
-    "descripcion": "Repuesto original extraído de tienda oficial Mercado Libre: Anillo-piston 1343761 - Caterpillar",
-    "imagen_hd": "https://http2.mlstatic.com/D_Q_NP_2X_760911-MLV52216519846_102022-E.webp",
-    "link_ml": "https://articulo.mercadolibre.com.ve/MLV-727931845-anillo-piston-1343761-caterpillar-_JM#polycard_client=search-desktop&be_origin=backend&overlay_label=not_apply&search_layout=grid&position=33&type=item&tracking_id=d57b86ea-53d9-4501-aefd-a89865f4e231&wid=MLV727931845&sid=search"
-  },
-  {
-    "id": 34,
-    "codigo": "Sleeve",
-    "titulo": "Sleeve, Camisa O Toberas De Inyector Cat 3114, 3116, 3126",
-    "precio": "US$ 13",
-    "stock": "Disponible",
-    "descripcion": "Repuesto original extraído de tienda oficial Mercado Libre: Sleeve, Camisa O Toberas De Inyector Cat 3114, 3116, 3126",
-    "imagen_hd": "https://http2.mlstatic.com/D_Q_NP_2X_609245-MLV70435345603_072023-E.webp",
-    "link_ml": "https://articulo.mercadolibre.com.ve/MLV-761003824-sleeve-camisa-o-toberas-de-inyector-cat-3114-3116-3126-_JM#polycard_client=search-desktop&be_origin=backend&overlay_label=not_apply&search_layout=grid&position=34&type=item&tracking_id=d57b86ea-53d9-4501-aefd-a89865f4e231&wid=MLV761003824&sid=search"
-  },
-  {
-    "id": 35,
-    "codigo": "Camisa",
-    "titulo": "Camisa Cilindro Para Caterpillar 3306 O 3304 1105800 - Ipd",
-    "precio": "US$ 99",
-    "stock": "Disponible",
-    "descripcion": "Repuesto original extraído de tienda oficial Mercado Libre: Camisa Cilindro Para Caterpillar 3306 O 3304 1105800 - Ipd",
-    "imagen_hd": "https://http2.mlstatic.com/D_Q_NP_2X_938969-MLA70976184541_082023-E.webp",
-    "link_ml": "https://articulo.mercadolibre.com.ve/MLV-764569624-camisa-cilindro-para-caterpillar-3306-o-3304-1105800-ipd-_JM#polycard_client=search-desktop&be_origin=backend&overlay_label=not_apply&search_layout=grid&position=35&type=item&tracking_id=d57b86ea-53d9-4501-aefd-a89865f4e231&wid=MLV764569624&sid=search"
-  },
-  {
-    "id": 36,
-    "codigo": "Filtro",
-    "titulo": "Filtro Gasoil Nkr / Nhr / Canter / H100 / Kia Pregio",
-    "precio": "US$ 10",
-    "stock": "Disponible",
-    "descripcion": "Repuesto original extraído de tienda oficial Mercado Libre: Filtro Gasoil Nkr / Nhr / Canter / H100 / Kia Pregio",
-    "imagen_hd": "https://http2.mlstatic.com/D_Q_NP_2X_888943-MLV111861914129_052026-E.webp",
-    "link_ml": "https://articulo.mercadolibre.com.ve/MLV-1011793262-filtro-gasoil-nkr-nhr-canter-h100-kia-pregio-_JM#polycard_client=search-desktop&be_origin=backend&overlay_label=not_apply&search_layout=grid&position=36&type=item&tracking_id=d57b86ea-53d9-4501-aefd-a89865f4e231&wid=MLV1011793262&sid=search"
-  },
-  {
-    "id": 37,
-    "codigo": "Separador",
-    "titulo": "Separador De Agua Cat Original 151-2409/p551436/fs19612",
-    "precio": "US$ 27",
-    "stock": "Disponible",
-    "descripcion": "Repuesto original extraído de tienda oficial Mercado Libre: Separador De Agua Cat Original 151-2409/p551436/fs19612",
-    "imagen_hd": "https://http2.mlstatic.com/D_Q_NP_2X_965405-MLV52288204460_112022-E.webp",
-    "link_ml": "https://articulo.mercadolibre.com.ve/MLV-728406113-separador-de-agua-cat-original-151-2409p551436fs19612-_JM#polycard_client=search-desktop&be_origin=backend&overlay_label=not_apply&search_layout=grid&position=37&type=item&tracking_id=d57b86ea-53d9-4501-aefd-a89865f4e231&wid=MLV728406113&sid=search"
-  },
-  {
-    "id": 38,
-    "codigo": "Filtro",
-    "titulo": "Filtro De Aire 40084500 - Hatz",
-    "precio": "US$ 17",
-    "stock": "Disponible",
-    "descripcion": "Repuesto original extraído de tienda oficial Mercado Libre: Filtro De Aire 40084500 - Hatz",
-    "imagen_hd": "https://http2.mlstatic.com/D_Q_NP_2X_949554-MLV53304212927_012023-E.webp",
-    "link_ml": "https://articulo.mercadolibre.com.ve/MLV-733530346-filtro-de-aire-40084500-hatz-_JM#polycard_client=search-desktop&be_origin=backend&overlay_label=not_apply&search_layout=grid&position=38&type=item&tracking_id=d57b86ea-53d9-4501-aefd-a89865f4e231&wid=MLV733530346&sid=search"
-  },
-  {
-    "id": 39,
-    "codigo": "Seal",
-    "titulo": "Seal Gp-crankshaft 9y9895 - Caterpillar",
-    "precio": "US$ 19",
-    "stock": "Disponible",
-    "descripcion": "Repuesto original extraído de tienda oficial Mercado Libre: Seal Gp-crankshaft 9y9895 - Caterpillar",
-    "imagen_hd": "https://http2.mlstatic.com/D_Q_NP_2X_698944-MLV53807656083_022023-E.webp",
-    "link_ml": "https://articulo.mercadolibre.com.ve/MLV-737930973-seal-gp-crankshaft-9y9895-caterpillar-_JM#polycard_client=search-desktop&be_origin=backend&overlay_label=not_apply&search_layout=grid&position=39&type=item&tracking_id=d57b86ea-53d9-4501-aefd-a89865f4e231&wid=MLV737930973&sid=search"
-  },
-  {
-    "id": 40,
-    "codigo": "Filtro",
-    "titulo": "Filtro De Aire 01319258 - Deutz",
-    "precio": "US$ 34",
-    "stock": "Disponible",
-    "descripcion": "Repuesto original extraído de tienda oficial Mercado Libre: Filtro De Aire 01319258 - Deutz",
-    "imagen_hd": "https://http2.mlstatic.com/D_Q_NP_2X_842981-MLV71806949203_092023-E.webp",
-    "link_ml": "https://articulo.mercadolibre.com.ve/MLV-769774236-filtro-de-aire-01319258-deutz-_JM#polycard_client=search-desktop&be_origin=backend&overlay_label=not_apply&search_layout=grid&position=40&type=item&tracking_id=d57b86ea-53d9-4501-aefd-a89865f4e231&wid=MLV769774236&sid=search"
-  },
-  {
-    "id": 41,
-    "codigo": "Concha",
-    "titulo": "Concha Caterpillar 8n7773 | D379b, G398, G399",
-    "precio": "US$ 44",
-    "stock": "Disponible",
-    "descripcion": "Repuesto original extraído de tienda oficial Mercado Libre: Concha Caterpillar 8n7773 | D379b, G398, G399",
-    "imagen_hd": "https://http2.mlstatic.com/D_Q_NP_2X_867031-MLV52429025791_112022-E.webp",
-    "link_ml": "https://articulo.mercadolibre.com.ve/MLV-729349340-concha-caterpillar-8n7773-d379b-g398-g399-_JM#polycard_client=search-desktop&be_origin=backend&overlay_label=not_apply&search_layout=grid&position=41&type=item&tracking_id=d57b86ea-53d9-4501-aefd-a89865f4e231&wid=MLV729349340&sid=search"
-  },
-  {
-    "id": 42,
-    "codigo": "Retenedor",
-    "titulo": "Retenedor Pasador De Piston 1s9543 Pack 2 Motor 3304 Y 3306",
-    "precio": "US$ 4",
-    "stock": "Disponible",
-    "descripcion": "Repuesto original extraído de tienda oficial Mercado Libre: Retenedor Pasador De Piston 1s9543 Pack 2 Motor 3304 Y 3306",
-    "imagen_hd": "https://http2.mlstatic.com/D_Q_NP_2X_716230-MLV52536492635_112022-E.webp",
-    "link_ml": "https://articulo.mercadolibre.com.ve/MLV-729935898-retenedor-pasador-de-piston-1s9543-pack-2-motor-3304-y-3306-_JM#polycard_client=search-desktop&be_origin=backend&overlay_label=not_apply&search_layout=grid&position=42&type=item&tracking_id=d57b86ea-53d9-4501-aefd-a89865f4e231&wid=MLV729935898&sid=search"
-  },
-  {
-    "id": 43,
-    "codigo": "Rodamiento",
-    "titulo": "Rodamiento Federal Mogul 3s1404",
-    "precio": "US$ 24",
-    "stock": "Disponible",
-    "descripcion": "Repuesto original extraído de tienda oficial Mercado Libre: Rodamiento Federal Mogul 3s1404",
-    "imagen_hd": "https://http2.mlstatic.com/D_Q_NP_2X_780202-MLA51954520069_102022-E.webp",
-    "link_ml": "https://articulo.mercadolibre.com.ve/MLV-726471843-rodamiento-federal-mogul-3s1404-_JM#polycard_client=search-desktop&be_origin=backend&overlay_label=not_apply&search_layout=grid&position=43&type=item&tracking_id=d57b86ea-53d9-4501-aefd-a89865f4e231&wid=MLV726471843&sid=search"
-  },
-  {
-    "id": 44,
-    "codigo": "Concha",
-    "titulo": "Concha Miba 7s9439 | 12e, 1673, 1674, 955k, 977h, D333a",
-    "precio": "US$ 77",
-    "stock": "Disponible",
-    "descripcion": "Repuesto original extraído de tienda oficial Mercado Libre: Concha Miba 7s9439 | 12e, 1673, 1674, 955k, 977h, D333a",
-    "imagen_hd": "https://http2.mlstatic.com/D_Q_NP_2X_976631-MLV52428277624_112022-E.webp",
-    "link_ml": "https://articulo.mercadolibre.com.ve/MLV-729401194-concha-miba-7s9439-12e-1673-1674-955k-977h-d333a-_JM#polycard_client=search-desktop&be_origin=backend&overlay_label=not_apply&search_layout=grid&position=44&type=item&tracking_id=d57b86ea-53d9-4501-aefd-a89865f4e231&wid=MLV729401194&sid=search"
-  },
-  {
-    "id": 45,
-    "codigo": "Filter",
-    "titulo": "Filter Element As-engine Oil 1r0726 - Caterpillar",
-    "precio": "US$ 37",
-    "stock": "Disponible",
-    "descripcion": "Repuesto original extraído de tienda oficial Mercado Libre: Filter Element As-engine Oil 1r0726 - Caterpillar",
-    "imagen_hd": "https://http2.mlstatic.com/D_Q_NP_2X_771349-MLV53314132810_012023-E.webp",
-    "link_ml": "https://articulo.mercadolibre.com.ve/MLV-733559736-filter-element-as-engine-oil-1r0726-caterpillar-_JM#polycard_client=search-desktop&be_origin=backend&overlay_label=not_apply&search_layout=grid&position=45&type=item&tracking_id=d57b86ea-53d9-4501-aefd-a89865f4e231&wid=MLV733559736&sid=search"
-  },
-  {
-    "id": 46,
-    "codigo": "Conchas",
-    "titulo": "Conchas De Bancada Cat 1077708 Motor 3116 C7",
-    "precio": "US$ 44",
-    "stock": "Disponible",
-    "descripcion": "Repuesto original extraído de tienda oficial Mercado Libre: Conchas De Bancada Cat 1077708 Motor 3116 C7",
-    "imagen_hd": "https://http2.mlstatic.com/D_Q_NP_2X_668752-MLA70347579280_072023-E.webp",
-    "link_ml": "https://articulo.mercadolibre.com.ve/MLV-744650445-conchas-de-bancada-cat-1077708-motor-3116-c7-_JM#polycard_client=search-desktop&be_origin=backend&overlay_label=not_apply&search_layout=grid&position=46&type=item&tracking_id=d57b86ea-53d9-4501-aefd-a89865f4e231&wid=MLV744650445&sid=search"
-  },
-  {
-    "id": 47,
-    "codigo": "Placa",
-    "titulo": "Placa Porta Resorte 7t3122 - Caterpillar",
-    "precio": "US$ 55",
-    "stock": "Disponible",
-    "descripcion": "Repuesto original extraído de tienda oficial Mercado Libre: Placa Porta Resorte 7t3122 - Caterpillar",
-    "imagen_hd": "https://http2.mlstatic.com/D_Q_NP_2X_776354-MLA71335681506_082023-E.webp",
-    "link_ml": "https://articulo.mercadolibre.com.ve/MLV-745372603-placa-porta-resorte-7t3122-caterpillar-_JM#polycard_client=search-desktop&be_origin=backend&overlay_label=not_apply&search_layout=grid&position=47&type=item&tracking_id=d57b86ea-53d9-4501-aefd-a89865f4e231&wid=MLV745372603&sid=search"
-  },
-  {
-    "id": 48,
-    "codigo": "Filtro",
-    "titulo": "Filtro De Aceite P551808 - Donaldson",
-    "precio": "US$ 56",
-    "stock": "Disponible",
-    "descripcion": "Repuesto original extraído de tienda oficial Mercado Libre: Filtro De Aceite P551808 - Donaldson",
-    "imagen_hd": "https://http2.mlstatic.com/D_Q_NP_2X_689322-MLV71520526204_092023-E.webp",
-    "link_ml": "https://articulo.mercadolibre.com.ve/MLV-748108357-filtro-de-aceite-p551808-donaldson-_JM#polycard_client=search-desktop&be_origin=backend&overlay_label=not_apply&search_layout=grid&position=48&type=item&tracking_id=d57b86ea-53d9-4501-aefd-a89865f4e231&wid=MLV748108357&sid=search"
+    "descripcion": "Junta empacadura para tapa de válvulas 7W5929 de motor Caterpillar 3306 / 3304.",
+    "imagen_hd": "https://http2.mlstatic.com/D_Q_NP_2X_755690-MLV52031931544_102022-O.webp",
+    "link_ml": "https://listado.mercadolibre.com.ve/_CustId_1216174253"
   }
 ]
