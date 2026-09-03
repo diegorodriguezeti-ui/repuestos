@@ -1,35 +1,28 @@
-import puppeteer from 'puppeteer';
+import puppeteer from 'puppeteer-extra';
+import StealthPlugin from 'puppeteer-extra-plugin-stealth';
 import fs from 'fs';
 import { execSync } from 'child_process';
+
+puppeteer.use(StealthPlugin());
 
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
 (async () => {
-  console.log("🚀 Iniciando extracción con estructura explícita de paginación...");
+  console.log("🚀 Iniciando Puppeteer con StealthPlugin y evasión avanzada...");
 
   const browser = await puppeteer.launch({
     headless: false,
     defaultViewport: null,
-    args: ['--no-sandbox', '--disable-setuid-sandbox', '--start-maximized']
+    args: [
+      '--no-sandbox',
+      '--disable-setuid-sandbox',
+      '--disable-blink-features=AutomationControlled',
+      '--start-maximized'
+    ]
   });
 
   const page = await browser.newPage();
-
-  await page.evaluateOnNewDocument(() => {
-    Object.defineProperty(navigator, 'webdriver', { get: () => undefined });
-    window.chrome = { runtime: {} };
-    Object.defineProperty(navigator, 'languages', { get: () => ['es-VE', 'es-419', 'es', 'en-US', 'en'] });
-    Object.defineProperty(navigator, 'plugins', { get: () => [1, 2, 3, 4, 5] });
-  });
-
   await page.setUserAgent('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36');
-  await page.setExtraHTTPHeaders({
-    'Accept-Language': 'es-VE,es-419;q=0.9,es;q=0.8,en;q=0.7',
-    'Upgrade-Insecure-Requests': '1',
-    'sec-ch-ua': '"Chromium";v="122", "Not(A:Brand";v="24", "Google Chrome";v="122"',
-    'sec-ch-ua-mobile': '?0',
-    'sec-ch-ua-platform': '"Windows"'
-  });
 
   const allProductsMap = new Map();
 
@@ -53,53 +46,53 @@ const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
   let hasMore = true;
 
   while (hasMore) {
-    // 1. Estructura exacta solicitada por el usuario
     const pageUrl = `https://listado.mercadolibre.com.ve/_CustId_1216174253_Desde_${offset}`;
     console.log(`\n📄 [Página ${pageNum} | Offset ${offset}] Cargando: ${pageUrl}`);
 
     try {
-      await page.goto(pageUrl, { waitUntil: 'networkidle2', timeout: 60000 });
+      await page.goto(pageUrl, { waitUntil: 'domcontentloaded', timeout: 60000 });
+      await sleep(2500);
     } catch (err) {
-      console.log(`⚠️ Advertencia de navegación: ${err.message}. Continuando verificación...`);
+      console.log(`⚠️ Nota de navegación: ${err.message}`);
     }
 
-    // 2. Manejo protegido de lectura de URL y Título
+    // Verificar si Mercado Libre muestra pantalla de seguridad o CAPTCHA
     let currentUrl = '';
     let currentTitle = '';
     try {
       currentUrl = page.url();
       currentTitle = await page.title();
-    } catch (_) {
-      await sleep(2000);
-      try {
-        currentUrl = page.url();
-        currentTitle = await page.title();
-      } catch (__) {}
-    }
+    } catch (_) {}
 
-    // 3. Detección de CAPTCHA con espera paciente de 120 segundos
-    if (currentUrl.includes('/captcha/') || currentUrl.includes('account-verification') || currentUrl.includes('challenge') || currentTitle.includes('Seguridad')) {
+    const isSecurityWall = () => {
+      const u = page.url();
+      return u.includes('/captcha/') || 
+             u.includes('wall') || 
+             u.includes('challenge') || 
+             u.includes('account-verification') || 
+             (currentTitle && currentTitle.includes('Seguridad'));
+    };
+
+    if (isSecurityWall()) {
       console.log("\n⚠️ ================================================================");
-      console.log("⚠️ MERCADO LIBRE SOLICITA RESOLUCIÓN DE CAPTCHA EN PANTALLA.");
-      console.log(`⚠️ URL actual: ${currentUrl}`);
-      console.log("⚠️ Resuelve el CAPTCHA manualmente en la ventana del navegador.");
-      console.log("⚠️ Esperando pacientemente (hasta 120 segundos) a que resuelvas el CAPTCHA...");
+      console.log("⚠️ MERCADO LIBRE SOLICITA RESOLUCIÓN DE CAPTCHA / SEGURIDAD.");
+      console.log(`⚠️ URL actual: ${page.url()}`);
+      console.log("⚠️ La ventana se MANTENDRÁ ABIERTA INDEFINIDAMENTE.");
+      console.log("⚠️ Por favor resuélvelo manualmente en la pantalla.");
+      console.log("⚠️ Esperando a que el listado cargue para continuar...");
       console.log("================================================================\n");
 
-      try {
-        await page.waitForSelector('.poly-card, .ui-search-layout__item', { timeout: 120000 });
-        console.log("✅ Selector del listado detectado con éxito. Continuando con la extracción...");
-        await sleep(3000);
-      } catch (e) {
-        console.log("⚠️ Se cumplió el tiempo de espera o no se detectó el listado.");
-      }
+      // Esperar indefinidamente (timeout: 0) hasta que aparezca el listado real
+      await page.waitForSelector('.poly-card, .ui-search-layout__item, .poly-component__picture', { timeout: 0 });
+      console.log("✅ Listado de productos detectado. Retomando extracción...");
+      await sleep(3000);
     }
 
-    // Esperar selectores del catálogo
+    // Esperar a que exista el contenedor de productos en el DOM
     try {
-      await page.waitForSelector('.poly-card, .ui-search-layout__item, .poly-component__picture, img.poly-component__picture', { timeout: 15000 });
+      await page.waitForSelector('.poly-card, .ui-search-layout__item, .poly-component__picture', { timeout: 15000 });
     } catch (_) {
-      console.log("ℹ️ Esperando carga dinámica del DOM...");
+      console.log("ℹ️ Comprobando elementos en la página...");
     }
 
     // Scroll progresivo para activar imágenes en lazy-loading
@@ -122,11 +115,10 @@ const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
     await sleep(2000);
 
-    // 2. Extraer productos buscando img.poly-component__picture, img[data-src], títulos y enlaces
-    const pageItems = await page.evaluate(() => {
+    // Extraer productos buscando selectores del catálogo
+    let pageItems = await page.evaluate(() => {
       let cards = Array.from(document.querySelectorAll('.poly-card, .ui-search-layout__item, li.ui-search-layout__item'));
       
-      // Fallback si la estructura utiliza contenedores de imagen directos
       if (cards.length === 0) {
         cards = Array.from(document.querySelectorAll('.poly-component__picture, img.poly-component__picture')).map(el => el.closest('li') || el.closest('div') || el);
       }
@@ -136,12 +128,10 @@ const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
       for (const card of cards) {
         if (!card) continue;
 
-        // Título
         const titleEl = card.querySelector('.poly-component__title, .ui-search-item__title, h2, h3, a[title]');
         const titulo = titleEl ? (titleEl.textContent || titleEl.getAttribute('title') || '').trim() : '';
         if (!titulo || titulo.length < 3) continue;
 
-        // Imagen HD con selector específico img.poly-component__picture o img[data-src]
         const imgEl = card.querySelector('img.poly-component__picture, img[data-src], img.ui-search-result-image__element, img');
         let rawImg = '';
         if (imgEl) {
@@ -158,15 +148,12 @@ const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
             .replace(/-E\.(jpg|webp)/i, '-O.$1');
         }
 
-        // Link de ML
         const linkEl = card.querySelector('a.poly-component__title, a.ui-search-link, a[href*="mercadolibre"]');
         const link_ml = linkEl ? linkEl.href : '';
 
-        // Precio
         const priceEl = card.querySelector('.andes-money-amount__fraction, .poly-price__current .andes-money-amount__fraction');
         const precio = priceEl ? `US$ ${priceEl.textContent.trim()}` : 'Consultar';
 
-        // Intentar extraer código de parte presente en el título
         const words = titulo.split(/\s+/);
         let codigo = '';
         for (const w of words) {
@@ -200,13 +187,22 @@ const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
       return results;
     });
 
+    // Si no encontró items, revisar si Mercado Libre redirigió a captcha durante el scroll
+    if (pageItems.length === 0 && isSecurityWall()) {
+      console.log("\n⚠️ Redirección a CAPTCHA detectada durante la carga.");
+      console.log("⚠️ Esperando INDEFINIDAMENTE a que resuelvas el CAPTCHA en pantalla...");
+      await page.waitForSelector('.poly-card, .ui-search-layout__item, .poly-component__picture', { timeout: 0 });
+      console.log("✅ CAPTCHA resuelto. Reintentando extracción de la página...");
+      await sleep(3000);
+      continue; // Reintentar la misma página actual
+    }
+
     console.log(`✅ [Página ${pageNum}] Extraídos ${pageItems.length} repuestos.`);
 
     if (pageItems.length === 0) {
-      // Comprobar si realmente no hay items o si la página cambió de estructura
       const pageTitle = await page.title();
       console.log(`ℹ️ Título de la página: "${pageTitle}" | URL actual: ${page.url()}`);
-      console.log(`🏁 No se encontraron repuestos en el offset ${offset}. Finalizando paginación.`);
+      console.log(`🏁 No se encontraron repuestos en el offset ${offset}. Fin del catálogo.`);
       hasMore = false;
       break;
     }
@@ -226,14 +222,14 @@ const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
     console.log(`📊 [Página ${pageNum}] Nuevos agregados: ${addedCount}. Total acumulado: ${allProductsMap.size}`);
 
-    // Si la página retornó menos de 50 items, hemos llegado al final
+    // Si la página retornó menos de 50 items, llegamos a la última página
     if (pageItems.length < 50) {
       console.log("🏁 Última página alcanzada (menos de 50 resultados).");
       hasMore = false;
       break;
     }
 
-    // Incrementar de 50 en 50: 1, 51, 101, 151...
+    // Avanzar de 50 en 50
     offset += 50;
     pageNum++;
     await sleep(2500);
@@ -241,7 +237,7 @@ const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
   await browser.close();
 
-  // Guardar en repuestos_ml.json
+  // Guardar catálogo consolidado en repuestos_ml.json
   const finalProducts = Array.from(allProductsMap.values()).map((p, idx) => ({
     id: idx + 1,
     ...p
@@ -254,9 +250,9 @@ const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
   try {
     console.log("\n📦 Sincronizando con Git...");
     execSync('git add repuestos_ml.json extract_full_ml.mjs', { stdio: 'inherit' });
-    execSync('git commit -m "feat: extraccion completa de fotos HD de todo el catalogo de ML"', { stdio: 'inherit' });
+    execSync('git commit -m "feat: extraccion completa con puppeteer stealth y resolucion interactiva"', { stdio: 'inherit' });
     execSync('git push origin main', { stdio: 'inherit' });
-    console.log("🚀 Cambios subidos a GitHub con éxito!");
+    console.log("🚀 Repositorio actualizado en GitHub con éxito!");
   } catch (gitErr) {
     console.log("ℹ️ Nota sobre Git:", gitErr.message);
   }
