@@ -669,6 +669,14 @@
             }
         }
 
+        function parseSpanishPrice(raw) {
+            if (!raw) return 0;
+            // Fix matemático: Reemplazar comas por puntos y parsear como float
+            const precioStr = String(raw).trim().replace(',', '.').replace(/[^0-9.-]+/g, '');
+            const val = parseFloat(precioStr);
+            return isNaN(val) ? 0 : val;
+        }
+
         function parseAndStoreProducts(csvText, mlItems = []) {
             Papa.parse(csvText, {
                 header: true,
@@ -677,17 +685,30 @@
                 complete: function(results) {
                     const rawRows = results.data || [];
                     
-                    // Filtro obligatorio: Solo incluir productos con columna "Estado" exactamente igual a "Activa"
+                    // Filtro obligatorio: Solo incluir productos activos y con stock disponible (> 0)
                     const activeRows = rawRows.filter(row => {
                         const estado = String(row['Estado'] || row['estado'] || row['ESTADO'] || '').trim().toLowerCase();
-                        return estado === 'activa';
+                        if (estado !== 'activa') return false;
+
+                        // Filtrar ítems sin stock
+                        const stockStr = String(row['Stock en tu depósito'] || row['stock'] || row['Stock'] || row['STOCK'] || '0').trim();
+                        const numericStock = parseInt(stockStr.replace(/[^0-9-]+/g, ''), 10);
+                        if (!isNaN(numericStock) && numericStock <= 0) return false;
+
+                        return true;
                     });
 
                     allProducts = activeRows.map((row, index) => {
                         const codigo = String(row['SKU'] || row['sku'] || row['codigo'] || row['Codigo'] || row['CODIGO'] || row['Número de publicación'] || (index + 1)).trim();
                         const titulo = String(row['Título'] || row['Titulo'] || row['titulo'] || row['TITULO'] || 'Repuesto sin título').trim();
                         const stock = String(row['Stock en tu depósito'] || row['stock'] || row['Stock'] || row['STOCK'] || 'Disponible').trim();
-                        const precio = String(row['Precio'] || row['precio'] || row['PRECIO'] || '0').trim();
+                        
+                        const rawPrecio = String(row['Precio'] || row['precio'] || row['PRECIO'] || '0').trim();
+                        const numericPrice = parseSpanishPrice(rawPrecio);
+                        const formattedPrice = numericPrice > 0 
+                            ? `US$ ${numericPrice.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`
+                            : (rawPrecio || 'Consultar');
+
                         const descripcion = String(row['Descripción'] || row['Descripcion'] || row['DESCRIPCION'] || row['descripción'] || 'Sin descripción detallada.').trim();
 
                         const normTitle = normalizeText(titulo);
@@ -718,7 +739,9 @@
                             codigo,
                             titulo,
                             stock,
-                            precio,
+                            precio: rawPrecio,
+                            numericPrice,
+                            formattedPrice,
                             descripcion,
                             imagen_hd: matchedImage,
                             link_ml: matchedLink,
@@ -819,10 +842,10 @@
             const chunk = filteredProducts.slice(0, visibleCount);
 
             grid.innerHTML = chunk.map(item => {
-                const numericPrice = parseFloat(String(item.precio).replace(/[^0-9.-]+/g, '')) || 0;
-                const formattedPrice = numericPrice > 0 
+                const numericPrice = item.numericPrice || parseSpanishPrice(item.precio);
+                const formattedPrice = item.formattedPrice || (numericPrice > 0 
                     ? `US$ ${numericPrice.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`
-                    : item.precio;
+                    : item.precio);
 
                 const rawWhatsappMessage = `Hola ROD INVEST PARTS! Me interesa el repuesto ${item.titulo} (Código: ${item.codigo}) con el precio de ${formattedPrice} que vi en la web. ¿Tienen disponibilidad?`;
                 const whatsappUrl = `https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent(rawWhatsappMessage)}`;
@@ -910,10 +933,10 @@
             const item = allProducts.find(p => p.id === productId);
             if (!item) return;
 
-            const numericPrice = parseFloat(String(item.precio).replace(/[^0-9.-]+/g, '')) || 0;
-            const formattedPrice = numericPrice > 0 
+            const numericPrice = item.numericPrice || parseSpanishPrice(item.precio);
+            const formattedPrice = item.formattedPrice || (numericPrice > 0 
                 ? `US$ ${numericPrice.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`
-                : item.precio;
+                : item.precio);
 
             document.getElementById('modalSkuBadge').textContent = `Código: ${item.codigo}`;
             document.getElementById('modalStockBadge').textContent = `Stock: ${item.stock}`;

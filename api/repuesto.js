@@ -144,7 +144,7 @@ export default async function handler(req, res) {
     const precioRaw = String(item['precio'] || '0').trim();
     const descripcion = String(item['descripción'] || item['descripcion'] || 'Repuesto original de alta calidad disponible en ROD INVEST PARTS.').trim();
 
-    const numericPrice = parseFloat(precioRaw.replace(/[^0-9.-]+/g, '')) || 0;
+    const numericPrice = parseFloat(String(precioRaw).replace(',', '.').replace(/[^0-9.-]+/g, '')) || 0;
     const formattedPrice = numericPrice > 0 
       ? numericPrice.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })
       : precioRaw;
