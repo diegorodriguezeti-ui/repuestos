@@ -677,6 +677,14 @@
             return isNaN(val) ? 0 : val;
         }
 
+        function cleanPartCode(c) {
+            return String(c || '').trim().replace(/[-\s]/g, '').toUpperCase();
+        }
+
+        function escapeRegExp(string) {
+            return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+        }
+
         function parseAndStoreProducts(csvText, mlItems = []) {
             Papa.parse(csvText, {
                 header: true,
@@ -714,19 +722,34 @@
                         const normTitle = normalizeText(titulo);
                         const normCode = normalizeText(codigo);
 
-                        // Matcheo Estricto 100% por Número de Parte (Ej: 2S7264, RE57394, 2H9298)
+                        // Matcheo Estricto de 2 Niveles:
+                        // Nivel 1 (Prioridad Alta): Coincidencia exacta de Código Normalizado (ej: "8N-8224" === "8N8224")
+                        // Nivel 2 (Validación de Seguridad): Código como PALABRA COMPLETA dentro del título (\b)
                         let matchedImage = '';
                         let matchedLink = '';
 
-                        if (mlItems && mlItems.length > 0 && codigo && codigo.length >= 3 && !/^\d{1,3}$/.test(codigo)) {
-                            const codeUpper = codigo.toUpperCase();
-                            const regex = new RegExp(`(?:^|[^A-Z0-9])${codeUpper.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&')}(?:$|[^A-Z0-9])`, 'i');
+                        const cleanCode = cleanPartCode(codigo);
 
-                            const match = mlItems.find(ml => {
-                                const mlTitleUpper = (ml.titulo || '').toUpperCase();
-                                const mlCodeUpper = (ml.codigo || '').toUpperCase();
-                                return regex.test(mlTitleUpper) || regex.test(mlCodeUpper) || mlTitleUpper.includes(codeUpper);
+                        if (mlItems && mlItems.length > 0 && cleanCode.length >= 2 && !/^\d{1,3}$/.test(cleanCode)) {
+                            // Nivel 1: Código normalizado exacto
+                            let match = mlItems.find(ml => {
+                                const mlCleanCode = cleanPartCode(ml.codigo);
+                                return mlCleanCode && mlCleanCode === cleanCode;
                             });
+
+                            // Nivel 2: Palabra completa en título
+                            if (!match && cleanCode.length >= 3) {
+                                const escapedRaw = escapeRegExp(codigo.trim());
+                                const rawRegex = new RegExp(`(?:^|[^A-Z0-9])${escapedRaw}(?:$|[^A-Z0-9])`, 'i');
+                                const cleanRegex = new RegExp(`(?:^|[^A-Z0-9])${cleanCode}(?:$|[^A-Z0-9])`, 'i');
+
+                                match = mlItems.find(ml => {
+                                    const title = ml.titulo || '';
+                                    if (rawRegex.test(title)) return true;
+                                    const titleNormalized = title.replace(/([A-Z0-9])-([A-Z0-9])/gi, '$1$2');
+                                    return cleanRegex.test(titleNormalized);
+                                });
+                            }
 
                             if (match) {
                                 matchedImage = match.imagen_hd || '';
