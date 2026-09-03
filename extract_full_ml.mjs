@@ -58,54 +58,46 @@ const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
     console.log(`\n📄 [Página ${pageNum} | Offset ${offset}] Cargando: ${pageUrl}`);
 
     try {
-      await page.goto(pageUrl, { waitUntil: 'domcontentloaded', timeout: 45000 });
-      await sleep(3000);
+      await page.goto(pageUrl, { waitUntil: 'networkidle2', timeout: 60000 });
     } catch (err) {
-      console.log(`⚠️ Advertencia de navegación: ${err.message}. Continuando...`);
+      console.log(`⚠️ Advertencia de navegación: ${err.message}. Continuando verificación...`);
     }
 
-    // 2. Si detecta que la URL incluye '/captcha/' o comprobaciones de seguridad
-    let currentUrl = page.url();
-    let currentTitle = await page.title();
+    // 2. Manejo protegido de lectura de URL y Título
+    let currentUrl = '';
+    let currentTitle = '';
+    try {
+      currentUrl = page.url();
+      currentTitle = await page.title();
+    } catch (_) {
+      await sleep(2000);
+      try {
+        currentUrl = page.url();
+        currentTitle = await page.title();
+      } catch (__) {}
+    }
 
+    // 3. Detección de CAPTCHA con espera paciente de 120 segundos
     if (currentUrl.includes('/captcha/') || currentUrl.includes('account-verification') || currentUrl.includes('challenge') || currentTitle.includes('Seguridad')) {
       console.log("\n⚠️ ================================================================");
       console.log("⚠️ MERCADO LIBRE SOLICITA RESOLUCIÓN DE CAPTCHA EN PANTALLA.");
-      console.log(`⚠️ URL actual: ${page.url()}`);
+      console.log(`⚠️ URL actual: ${currentUrl}`);
       console.log("⚠️ Resuelve el CAPTCHA manualmente en la ventana del navegador.");
-      console.log("⚠️ Esperando hasta 30 segundos o hasta que el listado de productos esté listo...");
+      console.log("⚠️ Esperando pacientemente (hasta 120 segundos) a que resuelvas el CAPTCHA...");
       console.log("================================================================\n");
 
-      let elapsedSeconds = 0;
-      const maxWaitSeconds = 30;
-
-      while (elapsedSeconds < maxWaitSeconds) {
-        try {
-          const hasListado = await page.evaluate(() => 
-            Boolean(document.querySelector('.poly-card, .ui-search-layout__item, .poly-component__picture, li.ui-search-layout__item'))
-          );
-          if (hasListado) {
-            console.log("✅ Selector del listado detectado con éxito antes del tiempo límite.");
-            break;
-          }
-        } catch (_) {}
-
-        if (!page.url().includes('/captcha/') && !page.url().includes('account-verification')) {
-          console.log("✅ Salida de la pantalla de CAPTCHA detectada.");
-          break;
-        }
-
-        await sleep(2000);
-        elapsedSeconds += 2;
-        console.log(`⏳ Esperando resolución del CAPTCHA... (${elapsedSeconds}s / ${maxWaitSeconds}s)`);
+      try {
+        await page.waitForSelector('.poly-card, .ui-search-layout__item', { timeout: 120000 });
+        console.log("✅ Selector del listado detectado con éxito. Continuando con la extracción...");
+        await sleep(3000);
+      } catch (e) {
+        console.log("⚠️ Se cumplió el tiempo de espera o no se detectó el listado.");
       }
-
-      await sleep(3000);
     }
 
     // Esperar selectores del catálogo
     try {
-      await page.waitForSelector('.poly-card, .ui-search-layout__item, .poly-component__picture, img.poly-component__picture', { timeout: 12000 });
+      await page.waitForSelector('.poly-card, .ui-search-layout__item, .poly-component__picture, img.poly-component__picture', { timeout: 15000 });
     } catch (_) {
       console.log("ℹ️ Esperando carga dinámica del DOM...");
     }
